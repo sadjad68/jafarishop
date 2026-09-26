@@ -1,0 +1,175 @@
+:root{
+    --color-light:255,255,255;
+    --color-dark:#252525;
+    --theme-radius-button:20px 0 10px 0;
+    --theme-radius-1:100px 0 0 0;
+    --theme-radius-2:20px 0px 0px 0px;
+    --service-img-radius:200px 0px 200px 0;
+    --service-img-mobile-radius:100px 0px 100px 0;
+    --about-back-radius:200px 0 100px 0;
+    --about-img-one:100px 0 50px 0;
+    --form-radius:50px 0 100px 0;
+    --tabButton-radius:10px;
+    --arrow-btn-radius:50px 0 50px 0;
+    --gallry-img-thumb:50px 0 25px 0;
+    --product-category:200px 0 0 0;
+    --product-radius:20px;
+
+    /* ---- Shopika (theme2) modern design tokens ---- */
+    --sk-ink-900:#14161a;
+    --sk-ink-700:#3a3d44;
+    --sk-ink-500:#71757d;
+    --sk-ink-300:#aeb2ba;
+    --sk-ink-100:#eef0f3;
+    --sk-surface:#ffffff;
+    --sk-surface-muted:#f6f7f9;
+    --sk-border:rgba(20,22,26,.08);
+    --sk-shadow-xs:0 1px 2px rgba(20,22,26,.05);
+    --sk-shadow-sm:0 6px 16px rgba(20,22,26,.06);
+    --sk-shadow-md:0 16px 40px rgba(20,22,26,.10);
+    --sk-shadow-lg:0 30px 70px rgba(20,22,26,.16);
+    --sk-radius-xs:10px;
+    --sk-radius-sm:16px;
+    --sk-radius-md:24px;
+    --sk-radius-lg:36px;
+    --sk-ease:cubic-bezier(.16,1,.3,1);
+    --sk-dur-fast:.22s;
+    --sk-dur-base:.4s;
+    --sk-dur-slow:.7s;
+}
+$color1 : var(--color-one);
+$color2 : var(--color-two);
+.m-10{
+    &-r{
+        margin-right: 10px;
+    }
+    &-l{
+        margin-left: 10px;
+    }
+    &-t{
+        margin-top: 10px;
+    }
+    &-m{
+        margin-bottom: 10px;
+    }
+}
+.op{
+    &-light{
+        opacity: 0.8;
+    }
+    &-lighter{
+        opacity: 0.6;
+    }
+}
+.font-small{
+    font-size: 12px;
+}
+.light{
+    color: rgba(var(--color-light),1);
+}
+.color-theme-one{
+    color: var(--color-one);
+}
+.color-theme-two{
+    color: var(--color-two);
+}
+.color-title{
+    color: var(--color-dark);
+}
+.btn-one{
+    background-color: var(--color-one);
+    color: var(--text-primery);
+    border: 1px solid var(--color-one);
+    border-radius: var(--theme-radius-button);
+    padding: 20px 30px;
+    transition: 0.5s;
+    &:hover{
+        background-color: rgba(var(--color-light),1);
+        border-color: rgba(var(--color-light),1);
+        color: var(--color-secondary) !important;
+    }
+}
+.btn-one-outline{
+    background-color: var(--color-one);
+    color: var(--text-primery);
+    border: 1px solid var(--color-one);
+    border-radius: var(--theme-radius-button);
+    padding: 20px 30px;
+    transition: 0.5s;
+    &:hover{
+        background-color: rgba(var(--color-light),1);
+        border-color: rgba(var(--color-one),1);
+        color: var(--text-secondary) !important;
+    }
+}
+.btn-two{
+    background-color: transparent;
+    color: rgba(var(--color-light),1);
+    border: 1px solid rgba(var(--color-light),1);
+    border-radius: var(--theme-radius-button);
+    padding: 20px 30px;
+    transition: 0.5s;
+    &:hover{
+        background-color: rgba(var(--color-light),1);
+        color: var(--text-secondary);
+    }
+}
+.btn-arrow{
+    background-color: rgba(var(--color-light),1);
+    color: var(--color-dark);
+    border: 1px solid var(--color-light);
+    border-radius: var(--arrow-btn-radius);
+    display: flex;
+    align-items: center;
+    font-family: pelak-rgular;
+    font-weight: 100;
+    padding: 20px 20px;
+    font-size: 16px;
+    .arrow-box{
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: var(--color-one);
+        margin-right: 100px;
+        color: var(--text-primery);
+        img{
+            width: 20px !important;
+            height: 20px !important;
+        }
+
+    }
+}
+.btn-arrow-two{
+    background-color: var(--color-one);
+    color: var(--text-primery) !important;
+    border: 1px solid var(--color-light);
+    border-radius: var(--arrow-btn-radius);
+    display: flex;
+    align-items: center;
+    font-family: pelak-rgular;
+    font-weight: 100;
+    padding: 20px 20px;
+    font-size: 16px;
+    a{
+        color: var(--text-primery);
+    }
+    .arrow-box{
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: rgba(var(--color-light),1);
+        margin-right: 100px;
+        color: var(--text-secondary);
+        img{
+            width: 20px !important;
+            height: 20px !important;
+        }
+
+    }
+}

@@ -1,0 +1,295 @@
+// Image Comparison Slider
+
+$brand-blue-core: #0091df;
+$brand-blue-mid: #00617f;
+
+$base-light: #fff;
+$base-dark: #000;
+$base-pale: #f2f2f2;
+
+.image-comparison {
+  max-width: 48.063em;
+  margin-right: auto;
+  margin-left: auto;
+  direction: ltr;
+  border-radius: var(--sk-radius-sm, 16px);
+  overflow: hidden;
+  border: 1px solid var(--sk-border, rgba(20, 22, 26, 0.08));
+  box-shadow: var(--sk-shadow-xs, 0 1px 2px rgba(20, 22, 26, 0.05));
+}
+
+.image-comparison__slider-wrapper {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  container-type: inline-size;
+  isolation: isolate;
+}
+
+.image-comparison__label {
+  font-size: 0;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.image-comparison__label,
+.image-comparison__range {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: ew-resize;
+  z-index: 30;
+}
+
+.image-comparison__range {
+  opacity: 0;
+  touch-action: none;
+}
+
+.image-comparison__image-wrapper,
+.image-comparison__slider {
+  pointer-events: none;
+}
+
+.image-comparison__range {
+  @media (hover) {
+    &:hover ~ .image-comparison__slider .image-comparison__thumb {
+      transform: scale(1.2);
+    }
+  }
+}
+
+// Specificity needed to override hover state above
+.image-comparison .image-comparison__slider-wrapper .image-comparison__range:active,
+.image-comparison .image-comparison__slider-wrapper .image-comparison__range:focus,
+.image-comparison .image-comparison__slider-wrapper .image-comparison__range--active {
+  ~ .image-comparison__slider .image-comparison__thumb {
+    transform: scale(0.8);
+    background-color: rgba(var(--color-light), 0.5);
+  }
+}
+
+.image-comparison__image-wrapper {
+  position: absolute;
+  inset: 0;
+}
+
+.image-comparison__image-wrapper--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(50% + 1px);
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.image-comparison__figure {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $base-pale;
+  }
+
+  &--overlay {
+    width: 100cqi;
+    height: 100%;
+    right: auto;
+  }
+}
+
+.image-comparison__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+
+  .image-comparison__figure--overlay & {
+    z-index: 1;
+    width: 100cqi;
+    height: 100%;
+  }
+}
+.image-comparison.detail-sample .image-comparison__caption{
+    bottom: 100px;
+}
+.image-comparison.detail-sample .image-comparison__caption--before{
+    left: 2px;
+}
+.image-comparison.detail-sample .image-comparison__caption--after{
+    right: 2px;
+}
+.image-comparison__image{
+    border-radius: unset !important;
+    box-shadow: unset !important;
+    border: unset !important;
+}
+.image-comparison__caption {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  height: max-content;
+  margin: auto;
+  min-width: max-content;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  color: rgba(var(--color-light), 1);
+  font-size: 12px;
+  
+  @media screen and (max-width: 40.063em) {
+    font-size: 12px;
+  }
+}
+
+.image-comparison__caption--before {
+  left: 0px;
+  z-index: 2;
+  border-radius: 0 10px 10px 0;
+  overflow: hidden;
+}
+
+.image-comparison__caption--after {
+  right: 0px;
+  text-align: right;
+  border-radius: 10px 0rem 0rem 10px;
+  overflow: hidden;
+}
+
+.image-comparison__caption-body {
+  max-width: 40vmin;
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background-color: rgba($base-dark, 0.48);
+  backdrop-filter: blur(10px) saturate(140%);
+  font-family: "yekan-medium", inherit;
+  letter-spacing: 0.02em;
+}
+
+.image-comparison__slider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background-color: $base-light;
+  transition: background-color 0.3s ease-in-out;
+  z-index: 10;
+
+  .image-comparison__range--active ~ & {
+    background-color: rgba($base-light, 0);
+  }
+}
+
+.image-comparison__thumb {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(var(--color-light), 1);
+  color: var(--color-dark);
+  border-radius: 50%;
+  box-shadow: 0 0 22px 0 rgba(var(--color-dark), .7);
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.image-comparison__range::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+}
+
+.image-comparison__range::-moz-range-track {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+}
+
+.image-comparison__range::-moz-range-thumb {
+  width: 48px;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  opacity: 0;
+}
+
+.image-comparison__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 48px;
+  height: 100%;
+  min-height: 100%;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.image-comparison__range::-ms-fill-lower {
+  background-color: transparent;
+}
+
+.image-comparison__range::-ms-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: transparent;
+  outline: none;
+  cursor: col-resize;
+}
+
+.image-comparison__range::-ms-thumb {
+  width: 0.5%;
+  height: 100%;
+  opacity: 0;
+}
+
+.image-comparison__range::-ms-tooltip {
+  display: none;
+}
+@media(max-width:576px){
+    .image-comparison__thumb{
+        width: 30px;
+        height: 30px;
+        top: calc(50% - 15px);
+        left: calc(50% - 15px);
+    }
+}

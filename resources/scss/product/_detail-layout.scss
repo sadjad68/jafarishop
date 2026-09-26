@@ -1,0 +1,298 @@
+/* Product detail — split counter layout */
+
+.pdp-page {
+    padding-bottom: 3rem;
+    background: var(--color-body);
+
+    .menu {
+        position: unset !important;
+
+        .change-color {
+            filter: brightness(0.2) !important;
+        }
+
+        a,
+        li,
+        .light {
+            color: var(--color-dark) !important;
+        }
+
+        .drop-box-mega a {
+            color: rgba(var(--color-light), 1) !important;
+        }
+
+        .top {
+            border-bottom-color: #ccc !important;
+        }
+
+        .drop-box,
+        .drop-box-in,
+        .drop-box-inn {
+            background-color: rgba(var(--color-light), 1) !important;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+.pdp-page .plp-header {
+    margin-top: 1rem;
+}
+
+.pdp-header__alert {
+    margin: 0.75rem 0 0;
+    padding: 0.85rem 1.1rem;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid color-mix(in srgb, var(--color-one) 16%, transparent);
+}
+
+.pdp-main {
+    padding-top: 0.85rem;
+    padding-bottom: 1.25rem;
+}
+
+.pdp-sheet {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(18.5rem, 0.92fr);
+    gap: clamp(1.25rem, 3vw, 2.75rem);
+    align-items: start;
+}
+
+.pdp-sheet__visual,
+.pdp-sheet__counter {
+    min-width: 0;
+}
+
+.pdp-sheet__counter {
+    padding-top: 0.35rem;
+}
+
+.pdp-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+}
+
+.pdp-dock {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid color-mix(in srgb, var(--color-one) 14%, rgba(20, 22, 26, 0.08));
+    border-radius: 22px;
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--color-one) 8%, rgba(20, 22, 26, 0.04));
+}
+
+.pdp-dock .pdp-info__variants--toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin: 14px 16px 0;
+}
+
+.pdp-info__reset {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 32px;
+    padding: 4px 12px;
+    border: 1px solid color-mix(in srgb, var(--color-one) 22%, rgba(20, 22, 26, 0.08));
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-one) 6%, #fff);
+    color: var(--color-dark);
+    font-size: 12px;
+    font-family: "yekan-medium", inherit;
+    line-height: 1;
+    box-shadow: none;
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+
+    i {
+        display: flex;
+        font-size: 14px;
+        color: var(--color-one);
+    }
+
+    &:hover,
+    &:focus-visible {
+        border-color: color-mix(in srgb, var(--color-one) 42%, transparent);
+        background: color-mix(in srgb, var(--color-one) 12%, #fff);
+        color: var(--color-dark);
+    }
+
+    &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-one) 22%, transparent);
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
+}
+
+.pdp-dock .pdp-info__trust {
+    padding: 0 16px 12px;
+}
+
+.pdp-identity__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+}
+
+.pdp-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+}
+
+.pdp-meta__rating {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    min-height: 40px;
+    padding: 6px 12px;
+    border: 1px solid color-mix(in srgb, var(--color-one) 18%, rgba(20, 22, 26, 0.08));
+    border-radius: 999px;
+    background: #fff;
+    color: var(--color-dark);
+    box-shadow: none;
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+        border-color: color-mix(in srgb, var(--color-one) 40%, transparent);
+        background: color-mix(in srgb, var(--color-one) 6%, #fff);
+        color: var(--color-dark);
+    }
+
+    &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-one) 22%, transparent);
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
+}
+
+.pdp-meta__stars {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 2px;
+    margin: 0;
+    color: #e0b422;
+    font-size: 15px;
+    line-height: 1;
+}
+
+.pdp-meta__reviews {
+    font-size: 13px;
+    color: color-mix(in srgb, var(--color-dark) 62%, #fff);
+}
+
+.pdp-related {
+    margin-top: 2.25rem;
+
+    .swiper-slide {
+        height: auto;
+    }
+}
+
+.pdp-related-swiper {
+    overflow: hidden;
+    padding: 0.2rem 0.1rem 0.5rem;
+}
+
+.pdp-social-fixed {
+    position: fixed;
+    bottom: 1rem;
+    inset-inline-end: 1rem;
+    z-index: 1041;
+    width: min(220px, calc(100vw - 2rem));
+
+    .btn-social-pm {
+        box-shadow: 0 16px 40px rgba(20, 22, 26, 0.1);
+    }
+
+    &--mobile {
+        inset-inline-end: 0.75rem;
+        inset-inline-start: auto;
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        width: auto;
+
+        .btn-social-pm--compact {
+            width: 48px;
+            height: 48px;
+            min-height: 48px;
+            padding: 0 !important;
+            border-radius: 50%;
+
+            .pdp-social__label {
+                display: none;
+            }
+
+            .pdp-social__logo {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+}
+
+body.pdp-sticky-active {
+    .pdp-social-fixed--mobile {
+        bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+    }
+}
+
+body.pdp-sticky-active:has(.pdp-sticky-bar__social) {
+    .pdp-social-fixed--mobile {
+        bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+    }
+}
+
+.product-page.pdp-page {
+    padding-bottom: 3rem;
+}
+
+.product-info {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+@media (max-width: 991.98px) {
+    .pdp-sheet {
+        grid-template-columns: 1fr;
+        gap: 1.15rem;
+    }
+
+    .pdp-sheet__counter {
+        padding-top: 0;
+    }
+
+    .pdp-identity__title {
+        font-size: 1.45rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pdp-info__reset {
+        transition: none !important;
+        transform: none !important;
+    }
+}

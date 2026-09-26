@@ -1,0 +1,41 @@
+---
+description: graphify knowledge graph — use for exploration, skip for small/local tasks
+alwaysApply: true
+---
+
+This project has a graphify knowledge graph at `graphify-out/`.
+The CLI is the project venv: `./.venv-graphify/bin/graphify` (not a global `graphify` on PATH).
+
+## When to use graphify (required)
+
+Run graphify **before** Read/Grep/Glob when the task needs cross-file or architectural context:
+
+- "How does X work?", data flow, or dependency tracing
+- Finding callers, usages, or relationships you do not already know
+- Exploring an unfamiliar area of the codebase
+- Broad refactors touching many modules
+- Subagents doing exploration — include this rule in their prompt
+
+Commands:
+- `./.venv-graphify/bin/graphify query "<question>"` — scoped subgraph (add `--budget 1500` to cap output)
+- `./.venv-graphify/bin/graphify path "<A>" "<B>"` — shortest path between two concepts
+- `./.venv-graphify/bin/graphify explain "<concept>"` — all nodes related to a concept
+
+If `graphify-out/wiki/index.md` exists, prefer it over reading scattered raw files for orientation.
+
+## When to skip graphify (go direct)
+
+Do **not** run graphify when the task is already scoped — use Read/Grep/Glob directly:
+
+- User named a specific file or path ("in `FooController.php`", "line 42 of …")
+- Single-file or few-line edits (fix, rename, format, add a method)
+- Config/tooling only (`composer.json`, CI, env, git, PR, commit)
+- Running a known command or test the user specified
+- Debugging a specific error at a known stack trace location
+- Follow-up after graphify already oriented you — read only the lines you need to edit
+
+## Other
+
+- Read `graphify-out/GRAPH_REPORT.md` only for broad architecture review when query/path/explain are not enough.
+- After modifying code files, run `./.venv-graphify/bin/graphify update .` to keep the graph current (AST-only, no API cost).
+- If `graphify-out/graph.json` does not exist yet, explore normally or build the graph first.

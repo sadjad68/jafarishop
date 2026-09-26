@@ -1,0 +1,66 @@
+/* Vue Paginate — Shopika (theme2 does not load shared/public.css) */
+
+body.theme-theme2 {
+    .custom-paginate {
+        list-style: none;
+        padding: 0;
+        margin: 1.5rem 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+        width: 100%;
+
+        li {
+            list-style: none;
+            margin: 0 !important;
+            padding: 0;
+
+            a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 40px;
+                height: 40px;
+                padding: 0 12px;
+                border-radius: 100px;
+                border: 1px solid var(--sk-border);
+                background: var(--sk-surface);
+                color: var(--sk-ink-700);
+                font-family: "yekan-medium", inherit;
+                font-size: 14px;
+                text-decoration: none;
+                cursor: pointer;
+                transition: background-color var(--sk-dur-fast) ease,
+                    border-color var(--sk-dur-fast) ease,
+                    color var(--sk-dur-fast) ease,
+                    box-shadow var(--sk-dur-fast) ease;
+
+                &:hover {
+                    border-color: var(--color-one);
+                    color: var(--sk-ink-900);
+                }
+            }
+
+            &.active a {
+                background: var(--color-one);
+                border-color: var(--color-one);
+                color: var(--text-primery);
+                box-shadow: var(--sk-shadow-xs);
+            }
+
+            &.disabled a {
+                opacity: 0.45;
+                cursor: default;
+                pointer-events: none;
+            }
+
+            &:first-child a,
+            &:last-child a {
+                padding: 0 16px;
+                font-family: "yekan-regular", inherit;
+            }
+        }
+    }
+}

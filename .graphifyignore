@@ -1,0 +1,8 @@
+# Local Graphify venv — CLI lives here, not in the repo
+.venv-graphify/
+
+# Graphify local cost file
+graphify-out/cost.json
+public/assets/
+storage/framework/
+bootstrap/cache/

@@ -1,0 +1,111 @@
+// Theme1 — Color Column, soft-light edition.
+// Brand as surface, but lit: layered elevation, brand-tinted glass, gradient accents.
+// Signature: cinematic photo (slow scale + veil), quiet type, generous corners.
+
+:root {
+    --t1-ink: var(--color-dark);
+    --t1-paper: var(--color-body);
+    --t1-brand: var(--color-one);
+    --t1-on-brand: var(--text-primery);
+    --t1-muted: color-mix(in srgb, var(--color-dark) 62%, #fff);
+
+    // Geometry — soft but not bubbly.
+    --t1-r-xs: 8px;
+    --t1-r-sm: 12px;
+    --t1-r-md: 18px;
+    --t1-r-lg: 26px;
+    --t1-r-xl: 34px;
+    --t1-r-pill: 999px;
+    --t1-radius: var(--t1-r-md);
+
+    // Motion.
+    --t1-ease: cubic-bezier(0.23, 1, 0.32, 1);
+    --t1-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --t1-dur: 0.24s;
+    --t1-dur-slow: 0.45s;
+    --t1-dur-img: 0.8s;
+
+    // Type — Estedad (mapped onto pelak-* family names).
+    --t1-font-body: pelak-rgular, Tahoma, sans-serif;
+    --t1-font-ui: pelak-medium, Tahoma, sans-serif;
+    --t1-font-display: pelak-bold, Tahoma, sans-serif;
+    --t1-font-num: pelak-num, Tahoma, sans-serif;
+
+    // Rhythm.
+    --t1-section-y: clamp(68px, 9vw, 116px);
+
+    // Light surfaces — body mixed with the selected theme.
+    --t1-surface: #fff;
+    --t1-surface-2: color-mix(in srgb, var(--color-one) 6%, var(--color-body));
+    --t1-line: color-mix(in srgb, var(--color-one) 16%, transparent);
+    --t1-line-soft: color-mix(in srgb, var(--color-one) 10%, transparent);
+
+    // Dark-slab surfaces — follow color-one / text-primary, not a fixed grey.
+    --t1-ink-surface: color-mix(in srgb, #fff 8%, var(--color-one));
+    --t1-ink-surface-2: color-mix(in srgb, #fff 14%, var(--color-one));
+    --t1-ink-line: color-mix(in srgb, var(--text-primery) 18%, transparent);
+    --t1-on-ink: var(--text-primery);
+    --t1-on-ink-soft: color-mix(in srgb, var(--text-primery) 72%, transparent);
+
+    // Brand tints.
+    --t1-brand-soft: color-mix(in srgb, var(--color-one) 10%, transparent);
+    --t1-brand-deep: color-mix(in srgb, #000 18%, var(--color-one));
+    --t1-brand-lift: color-mix(in srgb, #fff 12%, var(--color-one));
+    --t1-grad-brand: linear-gradient(135deg, var(--t1-brand-lift) 0%, var(--color-one) 45%, var(--t1-brand-deep) 100%);
+    --t1-grad-ink: linear-gradient(
+        195deg,
+        var(--t1-brand-deep) 0%,
+        var(--color-one) 58%,
+        color-mix(in srgb, #000 14%, var(--color-one)) 100%
+    );
+    --t1-grad-theme: linear-gradient(
+        165deg,
+        var(--t1-brand-deep) 0%,
+        var(--color-one) 52%,
+        var(--t1-brand-lift) 100%
+    );
+    --t1-grad-paper: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-one) 10%, var(--color-body)) 0%,
+        var(--color-body) 46%,
+        color-mix(in srgb, var(--color-two) 11%, var(--color-body)) 100%
+    );
+    --t1-grad-theme-card: linear-gradient(
+        145deg,
+        var(--t1-brand-lift) 0%,
+        var(--t1-brand-deep) 100%
+    );
+    --t1-grad-theme-card-alt: linear-gradient(
+        225deg,
+        color-mix(in srgb, #fff 8%, var(--color-one)) 0%,
+        var(--t1-brand-deep) 100%
+    );
+    --t1-glass: color-mix(in srgb, #fff 16%, transparent);
+    --t1-glass-line: rgba(255, 255, 255, 0.28);
+
+    // Elevation — ink-tinted so shadows read as depth, not dirt.
+    --t1-shadow-xs: 0 1px 2px color-mix(in srgb, var(--color-one) 8%, transparent);
+    --t1-shadow-sm: 0 4px 14px color-mix(in srgb, var(--color-one) 12%, transparent);
+    --t1-shadow-md: 0 14px 34px color-mix(in srgb, var(--color-one) 16%, transparent);
+    --t1-shadow-lg: 0 28px 64px color-mix(in srgb, var(--color-one) 22%, transparent);
+    --t1-shadow-brand: 0 16px 38px color-mix(in srgb, var(--color-one) 28%, transparent);
+    --t1-shadow-dark: 0 20px 46px color-mix(in srgb, var(--color-one) 42%, rgba(0, 0, 0, 0.28));
+}
+
+body.theme-theme1 {
+    font-family: var(--t1-font-body);
+
+    --theme-radius-button: var(--t1-r-pill);
+    --theme-radius-1: var(--t1-r-lg);
+    --theme-radius-2: var(--t1-r-md);
+    --service-img-radius: var(--t1-r-lg);
+    --service-img-mobile-radius: var(--t1-r-md);
+    --about-back-radius: var(--t1-r-lg);
+    --about-img-one: var(--t1-r-lg);
+    --form-radius: var(--t1-r-md);
+    --tabButton-radius: var(--t1-r-pill);
+    --arrow-btn-radius: var(--t1-r-pill);
+    --gallry-img-thumb: var(--t1-r-md);
+    --product-category: var(--t1-r-lg);
+    --product-radius: var(--t1-r-md);
+}

@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "newdebugbar": {
+      "command": "php",
+      "args": [
+        "artisan",
+        "mcp:start",
+        "newdebugbar"
+      ],
+      "cwd": "/Users/sadjadsamrad/Documents/GitHub/template",
+      "startup_timeout_sec": 15,
+      "tool_timeout_sec": 30
+    }
+  }
+}

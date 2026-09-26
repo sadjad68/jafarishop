@@ -1,0 +1,11 @@
+{
+    "name": "General",
+    "alias": "general",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "App\\Modules\\General\\Providers\\GeneralServiceProvider"
+    ],
+    "files": []
+}

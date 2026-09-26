@@ -1,0 +1,415 @@
+body.theme-theme1 {
+    background: var(--t1-paper);
+
+    // public.css sets `.swiper-slide { background: #fff }` globally — that
+    // punches white rectangles through the ink/brand slabs.
+    .swiper {
+        height: auto;
+    }
+
+    .swiper-slide {
+        background: transparent;
+        text-align: inherit;
+    }
+}
+
+// ---------------------------------------------------------------- sections
+
+.t1-section {
+    padding-block: var(--t1-section-y);
+    position: relative;
+    // Traps ::before (z-index: -1). Bootstrap modals must be siblings of this
+    // section — a dialog nested here sits under the body-level backdrop.
+    isolation: isolate;
+    color: var(--t1-ink);
+    background: var(--t1-grad-paper);
+
+    &--tight {
+        padding-block: clamp(44px, 6vw, 78px);
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+            radial-gradient(
+                60rem 32rem at 88% -10%,
+                color-mix(in srgb, var(--color-one) 16%, transparent) 0%,
+                transparent 70%
+            ),
+            radial-gradient(
+                42rem 26rem at 8% 108%,
+                color-mix(in srgb, var(--color-two) 14%, transparent) 0%,
+                transparent 72%
+            );
+    }
+
+    &--ink {
+        background: var(--t1-grad-ink);
+        color: var(--t1-on-ink);
+
+        &::before {
+            background:
+                radial-gradient(
+                    52rem 30rem at 82% -6%,
+                    color-mix(in srgb, var(--color-two) 30%, transparent) 0%,
+                    transparent 64%
+                ),
+                radial-gradient(
+                    40rem 26rem at 6% 108%,
+                    color-mix(in srgb, var(--t1-on-ink) 10%, transparent) 0%,
+                    transparent 70%
+                ),
+                radial-gradient(color-mix(in srgb, var(--t1-on-ink) 12%, transparent) 1px, transparent 1px) 0 0 / 30px 30px;
+        }
+
+        .t1-head__title,
+        .t1-head__eyebrow {
+            color: var(--t1-on-ink);
+        }
+
+        .t1-head__eyebrow {
+            background: color-mix(in srgb, var(--t1-on-ink) 12%, transparent);
+            border-color: color-mix(in srgb, var(--t1-on-ink) 26%, transparent);
+        }
+
+        .t1-head__desc {
+            color: var(--t1-on-ink-soft);
+        }
+    }
+
+    &--brand {
+        background: var(--t1-grad-brand);
+        color: var(--t1-on-brand);
+
+        &::before {
+            background:
+                radial-gradient(
+                    46rem 28rem at 12% -8%,
+                    color-mix(in srgb, var(--t1-on-brand) 16%, transparent) 0%,
+                    transparent 66%
+                ),
+                radial-gradient(
+                    38rem 24rem at 92% 104%,
+                    color-mix(in srgb, var(--color-two) 28%, transparent) 0%,
+                    transparent 68%
+                ),
+                radial-gradient(color-mix(in srgb, var(--t1-on-brand) 12%, transparent) 1px, transparent 1px) 0 0 / 30px 30px;
+        }
+
+        .t1-head__title,
+        .t1-head__eyebrow,
+        .t1-head__desc {
+            color: var(--t1-on-brand);
+        }
+
+        .t1-head__eyebrow {
+            background: color-mix(in srgb, var(--t1-on-brand) 12%, transparent);
+            border-color: color-mix(in srgb, var(--t1-on-brand) 26%, transparent);
+        }
+
+        .t1-head__desc {
+            opacity: 0.84;
+        }
+    }
+}
+
+// ------------------------------------------------------------ section head
+
+.t1-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 16px;
+    margin-bottom: 2.75rem;
+    max-width: 46rem;
+
+    &--center {
+        align-items: center;
+        text-align: center;
+        margin-inline: auto;
+    }
+}
+
+.t1-head__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 15px 7px 13px;
+    font-family: pelak-medium, inherit;
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    color: var(--t1-brand);
+    background: var(--t1-brand-soft);
+    border: 1px solid color-mix(in srgb, var(--t1-brand) 22%, transparent);
+    border-radius: var(--t1-r-pill);
+
+    &::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+        box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 22%, transparent);
+    }
+}
+
+.t1-head__title {
+    position: relative;
+    font-family: pelak-bold, inherit;
+    font-size: clamp(2rem, 1.2rem + 2.5vw, 3.3rem);
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+    color: var(--t1-ink);
+    margin: 0;
+    text-wrap: balance;
+
+    &::after {
+        content: "";
+        display: block;
+        margin-top: 18px;
+        width: 0;
+        height: 3px;
+        border-radius: var(--t1-r-pill);
+        background: linear-gradient(to left, var(--t1-brand), color-mix(in srgb, var(--t1-brand) 20%, transparent));
+        transition: width 0.75s var(--t1-ease) 0.1s;
+    }
+}
+
+.t1-section--ink .t1-head__title::after,
+.t1-section--brand .t1-head__title::after {
+    background: linear-gradient(to left, currentColor, color-mix(in srgb, currentColor 15%, transparent));
+}
+
+.js-motion .t1-head.is-visible .t1-head__title::after {
+    width: 68px;
+}
+
+.t1-head--center .t1-head__title::after {
+    margin-inline: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .t1-head__title::after {
+        transition: none;
+        width: 68px;
+    }
+}
+
+.t1-head__desc {
+    font-family: pelak-rgular, inherit;
+    font-size: 15.5px;
+    line-height: 1.95;
+    color: var(--t1-muted);
+    margin: 0;
+    max-width: 36rem;
+}
+
+// ---------------------------------------------------------------- buttons
+
+.t1-btn,
+.t1-link-arrow {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 54px;
+    padding: 0 28px;
+    overflow: hidden;
+    font-family: pelak-bold, inherit;
+    font-size: 14.5px;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    border-radius: var(--t1-r-pill);
+    transition:
+        transform var(--t1-dur) var(--t1-ease),
+        box-shadow var(--t1-dur) var(--t1-ease),
+        background-color var(--t1-dur) ease,
+        border-color var(--t1-dur) ease,
+        color var(--t1-dur) ease,
+        filter var(--t1-dur) ease;
+
+    // Light sweep on hover — reads as material, not decoration.
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background: linear-gradient(
+            100deg,
+            transparent 30%,
+            color-mix(in srgb, #fff 26%, transparent) 50%,
+            transparent 70%
+        );
+        transform: translateX(-120%);
+        transition: transform 0.65s var(--t1-ease);
+    }
+
+    &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--t1-brand) 38%, transparent);
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover::after {
+            transform: translateX(120%);
+        }
+    }
+}
+
+.t1-btn--solid,
+.t1-link-arrow {
+    background: var(--t1-ink);
+    border-color: transparent;
+    color: #fff !important;
+    box-shadow: var(--t1-shadow-sm);
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background: color-mix(in srgb, var(--t1-ink) 86%, #fff);
+            transform: translateY(-2px);
+            box-shadow: var(--t1-shadow-md);
+        }
+    }
+}
+
+.t1-btn--ghost {
+    background: transparent;
+    border-color: color-mix(in srgb, currentColor 42%, transparent);
+    color: inherit !important;
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background: color-mix(in srgb, currentColor 12%, transparent);
+            border-color: currentColor;
+            transform: translateY(-2px);
+        }
+    }
+}
+
+.t1-section--ink .t1-btn--solid,
+.t1-section--ink .t1-link-arrow {
+    background: var(--t1-on-ink);
+    color: var(--t1-ink-surface) !important;
+    box-shadow: var(--t1-shadow-md);
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background: color-mix(in srgb, var(--t1-on-ink) 88%, #fff);
+            filter: none;
+        }
+    }
+}
+
+.t1-section--brand .t1-btn--solid,
+.hero .t1-btn--solid,
+.t1-section--brand .t1-link-arrow,
+.hero .t1-link-arrow {
+    background: var(--t1-on-brand);
+    border-color: transparent;
+    color: var(--t1-brand) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background: var(--t1-on-brand);
+            filter: none;
+            transform: translateY(-2px);
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
+            color: var(--t1-brand) !important;
+        }
+    }
+}
+
+.t1-section--brand .t1-btn--ghost,
+.hero .t1-btn--ghost {
+    color: var(--t1-on-brand) !important;
+    border-color: color-mix(in srgb, var(--t1-on-brand) 45%, transparent);
+    backdrop-filter: blur(6px);
+}
+
+// ------------------------------------------------------------------ chips
+
+.t1-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 9px 20px;
+    font-family: pelak-medium, inherit;
+    font-size: 13.5px;
+    color: inherit;
+    border: 1px solid color-mix(in srgb, currentColor 26%, transparent);
+    border-radius: var(--t1-r-pill);
+    background: color-mix(in srgb, currentColor 5%, transparent);
+    text-decoration: none;
+    box-shadow: none;
+    cursor: pointer;
+    transition:
+        background-color var(--t1-dur) ease,
+        color var(--t1-dur) ease,
+        border-color var(--t1-dur) ease,
+        transform var(--t1-dur) var(--t1-ease);
+
+    // `background: currentColor` cannot be paired with a `color` change in the
+    // same rule — it would resolve to the new color and hide the label.
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background: var(--t1-ink);
+            border-color: var(--t1-ink);
+            color: var(--t1-paper);
+            transform: translateY(-2px);
+        }
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .t1-section--ink .t1-chip:hover {
+        background: var(--t1-on-ink);
+        border-color: var(--t1-on-ink);
+        color: var(--t1-ink);
+    }
+
+    .t1-section--brand .t1-chip:hover {
+        background: var(--t1-on-brand);
+        border-color: var(--t1-on-brand);
+        color: var(--t1-brand);
+    }
+}
+
+// --------------------------------------------------------- section footers
+
+.samples-cta,
+.products-cta,
+.gallery-cta {
+    margin-top: 2.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .t1-btn,
+    .t1-link-arrow,
+    .t1-chip,
+    .t1-btn::after,
+    .t1-link-arrow::after {
+        transition: none !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}

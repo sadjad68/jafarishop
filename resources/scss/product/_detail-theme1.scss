@@ -1,0 +1,234 @@
+/* Product detail — Theme1 Color Column counter. */
+
+body.theme-theme1 .pdp-page {
+    --pdp-ease: var(--t1-ease, cubic-bezier(0.23, 1, 0.32, 1));
+    background: var(--t1-grad-paper);
+    color: var(--t1-ink);
+    font-family: var(--t1-font-body);
+
+    .menu a,
+    .menu li,
+    .menu .light {
+        color: var(--t1-ink) !important;
+    }
+}
+
+body.theme-theme1 .pdp-dock {
+    background: var(--t1-surface);
+    border-color: var(--t1-line);
+    border-radius: var(--t1-r-lg);
+    box-shadow: var(--t1-shadow-sm);
+}
+
+body.theme-theme1 .pdp-meta__reviews,
+body.theme-theme1 .pdp-info__reset {
+    font-family: var(--t1-font-ui);
+}
+
+body.theme-theme1 .pdp-variants {
+    background: var(--t1-surface);
+    border: 1px solid var(--t1-line);
+    border-radius: var(--t1-r-lg);
+    box-shadow: var(--t1-shadow-xs);
+}
+
+body.theme-theme1 .pdp-variant__label,
+body.theme-theme1 .pdp-variant__chip {
+    font-family: var(--t1-font-ui);
+}
+
+body.theme-theme1 .pdp-variant__chip {
+    background: var(--t1-surface-2);
+    border-color: var(--t1-line);
+    color: var(--t1-ink);
+
+    &--active {
+        background: var(--t1-brand-soft);
+        border-color: var(--color-one);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-one) 16%, transparent);
+    }
+}
+
+body.theme-theme1 .product-page .pdp-dock .pdp-purchase {
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid var(--t1-ink-line);
+}
+
+body.theme-theme1 .product-page .pdp-purchase {
+    overflow: hidden;
+    border: 1px solid var(--t1-ink-line);
+    border-radius: var(--t1-r-lg);
+    background: var(--t1-grad-ink);
+    box-shadow: var(--t1-shadow-dark);
+    color: var(--t1-on-ink);
+
+    &__final-price {
+        font-family: var(--t1-font-display);
+        color: var(--t1-on-ink);
+
+        img {
+            filter: brightness(0) invert(1);
+            opacity: 0.85;
+        }
+    }
+
+    &__old-price {
+        color: var(--t1-on-ink-soft);
+    }
+
+    &__discount,
+    &__stock {
+        background: color-mix(in srgb, var(--t1-on-ink) 12%, transparent);
+        color: var(--t1-on-ink);
+        border-color: var(--t1-glass-line);
+        font-family: var(--t1-font-ui);
+        box-shadow: none;
+    }
+}
+
+body.theme-theme1 .product-page .pdp-qty {
+    border-color: var(--t1-glass-line);
+    background: color-mix(in srgb, var(--t1-on-ink) 10%, transparent);
+    border-radius: var(--t1-r-pill);
+
+    .value-button {
+        color: var(--t1-on-ink) !important;
+    }
+
+    .pdp-qty-input {
+        color: var(--t1-on-ink) !important;
+        font-family: var(--t1-font-num);
+    }
+}
+
+body.theme-theme1 .product-page .pdp-add-btn {
+    min-height: 52px;
+    border-radius: var(--t1-r-pill) !important;
+    background: var(--t1-on-ink) !important;
+    color: var(--color-one) !important;
+    font-family: var(--t1-font-display);
+    box-shadow: 0 10px 24px color-mix(in srgb, #000 22%, transparent);
+    transition: transform 160ms var(--t1-ease-out, cubic-bezier(0.16, 1, 0.3, 1));
+
+    &:hover,
+    &:focus-visible {
+        transform: translateY(-1px);
+        color: var(--color-one) !important;
+        background: var(--t1-on-ink) !important;
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
+
+    &--select {
+        background: transparent !important;
+        color: var(--t1-on-ink) !important;
+        border: 1px dashed var(--t1-glass-line) !important;
+        box-shadow: none;
+    }
+}
+
+body.theme-theme1 .product-page .pdp-features__title,
+body.theme-theme1 .product-page .pdp-features__item {
+    font-family: var(--t1-font-ui);
+}
+
+body.theme-theme1 .product-page .pdp-slogans {
+    background: var(--t1-surface);
+    border: 1px solid var(--t1-line);
+    border-radius: var(--t1-r-lg);
+    box-shadow: var(--t1-shadow-xs);
+}
+
+body.theme-theme1 .product-page .pdp-slogans__text,
+body.theme-theme1 .product-page .pdp-slogans-list__text {
+    font-family: var(--t1-font-ui);
+    color: var(--t1-ink);
+}
+
+body.theme-theme1 .product-page .pdp-tabs__nav-wrap {
+    padding: 8px;
+    border-radius: var(--t1-r-pill);
+    background: var(--t1-surface);
+    border: 1px solid var(--t1-line);
+}
+
+body.theme-theme1 .product-page .pdp-tabs__btn {
+    font-family: var(--t1-font-ui) !important;
+    color: var(--t1-muted) !important;
+
+    &.active {
+        background: var(--t1-grad-brand) !important;
+        color: var(--t1-on-brand) !important;
+        box-shadow: var(--t1-shadow-brand);
+    }
+}
+
+body.theme-theme1 .product-page .pdp-tabs__panel {
+    border-radius: var(--t1-r-lg);
+    background: var(--t1-surface);
+    border: 1px solid var(--t1-line);
+}
+
+body.theme-theme1 .product-page .pdp-tabs__heading,
+body.theme-theme1 .pdp-rail-head .sk-section-head__title {
+    font-family: var(--t1-font-display);
+    color: var(--t1-ink);
+}
+
+body.theme-theme1 .product-page .pdp-tabs__prose {
+    font-family: var(--t1-font-body);
+    color: var(--t1-muted);
+    font-size: 15.5px;
+    line-height: 1.95;
+}
+
+body.theme-theme1 .product-page .pdp-specs__table th,
+body.theme-theme1 .product-page .pdp-faq__trigger {
+    font-family: var(--t1-font-ui);
+    background: var(--t1-surface-2);
+}
+
+body.theme-theme1 .pdp-related-swiper {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+body.theme-theme1 .pdp-rail-head {
+    align-items: flex-start;
+    text-align: start;
+}
+
+body.theme-theme1 .product-page .pdp-sticky-bar {
+    background: color-mix(in srgb, var(--t1-paper) 88%, transparent);
+    border-top: 1px solid var(--t1-line);
+}
+
+body.theme-theme1 .product-page .pdp-sticky-bar .pdp-add-btn {
+    background: var(--t1-grad-brand) !important;
+    color: var(--t1-on-brand) !important;
+}
+
+body.theme-theme1 .product-page .pdp-sticky-bar .pdp-qty {
+    background: var(--t1-surface);
+    border-color: var(--t1-line);
+
+    .value-button,
+    .pdp-qty-input {
+        color: var(--t1-ink) !important;
+    }
+}
+
+body.theme-theme1 .product-page .pdp-sticky-bar .pdp-purchase__final-price {
+    color: var(--t1-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.theme-theme1 .product-page .pdp-add-btn {
+        transition: none !important;
+        transform: none !important;
+    }
+}

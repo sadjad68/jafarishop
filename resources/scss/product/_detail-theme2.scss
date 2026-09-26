@@ -1,0 +1,23 @@
+/* Product detail — Theme2 Shopika counter. */
+
+body.theme-theme2 .pdp-page {
+    background:
+        radial-gradient(46rem 26rem at 88% -12%, color-mix(in srgb, var(--color-one) 12%, transparent), transparent 68%),
+        var(--sk-surface-muted, #f6f7f9);
+}
+
+body.theme-theme2 .pdp-identity__title {
+    font-family: "yekan-extra-bold", inherit;
+}
+
+body.theme-theme2 .product-page .pdp-purchase {
+    border-radius: var(--sk-radius-md, 24px);
+}
+
+body.theme-theme2 .product-page .pdp-add-btn {
+    border-radius: 999px !important;
+}
+
+body.theme-theme2 .pdp-related-swiper {
+    padding: 0.15rem 0 0.4rem;
+}

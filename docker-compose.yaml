@@ -1,0 +1,131 @@
+version: '3.5'
+
+services:
+  app-core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    extra_hosts:
+      - "api.kavenegar.com:46.102.138.125"
+      - "sep.shaparak.ir:91.240.182.20"
+      - "www.zarinpal.com:45.89.137.20"
+      - "www.hamgaman.com:62.60.133.248"
+      - "hamgaman.com:62.60.133.248"
+      - "safir.bale.ai:2.189.68.126"
+      - "bale.ai:2.189.68.126"
+      - "gitlab.hamgaman.com:62.60.206.96"
+      - "payment.zarinpal.com:185.143.234.1"
+      - "api.snapppay.ir:185.219.112.23"
+      - "sepehr.shaparak.ir:193.3.31.85"
+      - "sadad.shaparak.ir:185.203.160.31"
+      - "mirror-composer.runflare.com:185.126.10.222"
+      - "dargaah.ir:185.143.233.234"
+    volumes:
+      - .:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./docker/php/fpm/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    depends_on:
+      - mysql
+    user: "www"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '6'
+          memory: 4048M
+        reservations:
+          memory: 512M
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    extra_hosts:
+      - "api.kavenegar.com:46.102.138.125"
+      - "sep.shaparak.ir:91.240.182.20"
+      - "www.zarinpal.com:45.89.137.20"
+      - "www.hamgaman.com:62.60.133.248"
+      - "hamgaman.com:62.60.133.248"
+      - "safir.bale.ai:2.189.68.126"
+      - "bale.ai:2.189.68.126"
+      - "gitlab.hamgaman.com:62.60.206.96"
+      - "payment.zarinpal.com:185.143.234.1"
+      - "api.snapppay.ir:185.219.112.23"
+      - "sepehr.shaparak.ir:193.3.31.85"
+      - "sadad.shaparak.ir:185.203.160.31"
+      - "mirror-composer.runflare.com:185.126.10.222"
+      - "dargaah.ir:185.143.233.234"
+    volumes:
+      - .:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./docker/php/fpm/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    depends_on:
+      - mysql
+    user: "www"
+    restart: unless-stopped
+    command: ["php", "artisan", "schedule:work"]
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          memory: 128M
+
+  webserver:
+    image: nginx:alpine
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "127.0.0.1:${APP_PORT}:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  mysql:
+    image: mysql:8.4.0
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    restart: unless-stopped
+    volumes:
+      - mysql_data_core:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 8G
+        reservations:
+          memory: 1G
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "127.0.0.1:${APP_PORT_PHPMYADMIN}:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - PMA_PORT=${DB_PORT}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 500M
+        reservations:
+          memory: 500M
+    volumes:
+      - ./docker/phpmyadmin/php.ini:/usr/local/etc/php/conf.d/phpmyadmin.ini
+
+volumes:
+  mysql_data_core:

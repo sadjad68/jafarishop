@@ -1,0 +1,42 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "public": "sass --watch resources/scss/shared/tpl-site-public.scss:public/assets/site/css/shared/tpl-site-public.css --style=expanded",
+        "index": "sass --watch resources/scss/index/tpl-theme1-home.scss:public/assets/site/css/index/tpl-theme1-home.css --style=expanded",
+        "service": "sass --watch resources/scss/service/tpl-service-detail.scss:public/assets/site/css/services/tpl-service-detail.css --style=expanded",
+        "list-service": "sass --watch resources/scss/service/tpl-service-list.scss:public/assets/site/css/services/tpl-service-list.css --style=expanded",
+        "list-samples": "sass --watch resources/scss/samples/tpl-sample-list.scss:public/assets/site/css/samples/tpl-sample-list.css --style=expanded",
+        "sample": "sass --watch resources/scss/samples/tpl-sample-detail.scss:public/assets/site/css/samples/tpl-sample-detail.css --style=expanded",
+        "list-blogs": "sass --watch resources/scss/blogs/tpl-blog-list.scss:public/assets/site/css/blogs/tpl-blog-list.css --style=expanded",
+        "detail-blog": "sass --watch resources/scss/blogs/tpl-blog-detail.scss:public/assets/site/css/blogs/tpl-blog-detail.css --style=expanded",
+        "about-us": "sass --watch resources/scss/us/tpl-about-us.scss:public/assets/site/css/us/tpl-about-us.css --style=expanded",
+        "contact-us": "sass --watch resources/scss/us/tpl-contact-us.scss:public/assets/site/css/us/tpl-contact-us.css --style=expanded",
+        "cat-gallery": "sass --watch resources/scss/gallery/tpl-gallery-category.scss:public/assets/site/css/gallery/tpl-gallery-category.css --style=expanded",
+        "package-list": "sass --watch resources/scss/packages/tpl-package-list.scss:public/assets/site/css/packages/tpl-package-list.css --style=expanded",
+        "package-detail": "sass --watch resources/scss/packages/tpl-package-detail.scss:public/assets/site/css/packages/tpl-package-detail.css --style=expanded",
+        "pro-cat": "sass --watch resources/scss/product/tpl-product-category.scss:public/assets/site/css/product/tpl-product-category.css --style=expanded",
+        "pro-list": "sass --watch resources/scss/product/tpl-product-list.scss:public/assets/site/css/product/tpl-product-list.css --style=expanded",
+        "pro-detail": "sass --watch resources/scss/product/tpl-product-detail.scss:public/assets/site/css/product/tpl-product-detail.css --style=expanded",
+        "auth": "sass --watch resources/scss/auth/tpl-auth-pages.scss:public/assets/site/css/auth/tpl-auth-pages.css --style=expanded",
+        "panel": "sass --watch resources/scss/panel/tpl-user-panel.scss:public/assets/site/css/panel/tpl-user-panel.css --style=expanded",
+        "brands": "sass --watch resources/scss/brand/tpl-brand-list.scss:public/assets/site/css/brand/tpl-brand-list.css --style=expanded",
+        "search": "sass --watch resources/scss/search/tpl-site-search.scss:public/assets/site/css/search/tpl-site-search.css --style=expanded",
+        "cart-checkout": "sass --watch resources/scss/cart/tpl-checkout.scss:public/assets/site/css/cart/tpl-checkout.css --style=expanded",
+        "shop-public": "sass --watch resources/scss/shop/tpl-theme2-public.scss:public/assets/site/css/shop/tpl-theme2-public.css --style=expanded",
+        "shop-first": "sass --watch resources/scss/shop/tpl-theme2-home.scss:public/assets/site/css/shop/tpl-theme2-home.css --style=expanded",
+        "shop-inner": "sass --watch resources/scss/shop/tpl-theme2-inner.scss:public/assets/site/css/shop/tpl-theme2-inner.css --style=expanded",
+        "error": "sass --watch resources/scss/shared/tpl-site-error.scss:public/assets/site/css/shared/tpl-site-error.css --style=expanded"
+    },
+    "devDependencies": {
+        "axios": "^1.1.2",
+        "laravel-vite-plugin": "^0.7.2",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "sass": "^1.83.4"
+    }
+}

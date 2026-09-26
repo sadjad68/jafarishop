@@ -1,0 +1,441 @@
+/* Shopika working-hours dialog — week planner card, not a settings table. */
+
+.hours-modal {
+    --hours-pad: 22px;
+
+    .hours-modal__dialog {
+        max-width: 420px;
+        margin-inline: 16px;
+    }
+
+    .hours-modal__content {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+    }
+
+    .hours-modal__panel {
+        position: relative;
+        overflow: hidden;
+        padding: 28px var(--hours-pad) 22px;
+        background:
+            radial-gradient(120% 80% at 100% 0%, color-mix(in srgb, var(--color-one) 16%, transparent), transparent 56%),
+            var(--sk-surface);
+        border: 1px solid var(--sk-border);
+        border-radius: var(--sk-radius-md);
+        box-shadow: var(--sk-shadow-lg);
+    }
+
+    .hours-modal__handle {
+        display: none;
+        width: 40px;
+        height: 4px;
+        margin: 0 auto 16px;
+        border-radius: 4px;
+        background: var(--sk-ink-100);
+    }
+
+    .hours-modal__close {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 1px solid var(--sk-border);
+        border-radius: 50%;
+        background: var(--sk-surface);
+        color: var(--sk-ink-700);
+        box-shadow: var(--sk-shadow-xs);
+        cursor: pointer;
+        transition: transform var(--sk-dur-fast) var(--sk-ease),
+            background-color var(--sk-dur-fast) ease,
+            border-color var(--sk-dur-fast) ease,
+            color var(--sk-dur-fast) ease;
+
+        &:hover {
+            color: var(--sk-ink-900);
+            border-color: color-mix(in srgb, var(--color-one) 40%, var(--sk-border));
+        }
+
+        &:active {
+            transform: scale(0.97);
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-one) 22%, transparent);
+        }
+    }
+
+    .hours-modal__head {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin: 0 0 22px;
+        padding-left: 48px;
+    }
+
+    .hours-modal__icon {
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--color-one) 14%, var(--sk-surface));
+        color: var(--color-one);
+        font-size: 1.35rem;
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-one) 16%, transparent);
+    }
+
+    .hours-modal__intro {
+        min-width: 0;
+        padding-top: 2px;
+    }
+
+    .hours-modal__title {
+        margin: 0 0 6px;
+        font-family: "yekan-extra-bold", inherit;
+        font-size: clamp(1.15rem, 1rem + 0.6vw, 1.35rem);
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        color: var(--sk-ink-900);
+    }
+
+    .hours-modal__status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+        font-family: "yekan-medium", inherit;
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--sk-ink-500);
+    }
+
+    .hours-modal__live {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--sk-ink-300);
+        flex-shrink: 0;
+    }
+
+    .hours-modal__status--open {
+        color: var(--color-one);
+
+        .hours-modal__live {
+            background: var(--color-one);
+            box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-one) 40%, transparent);
+            animation: hours-live 1.8s ease-out infinite;
+        }
+    }
+
+    .hours-modal__status--closed .hours-modal__live,
+    .hours-modal__status--ended .hours-modal__live {
+        background: var(--sk-ink-300);
+    }
+
+    .hours-modal__status--later .hours-modal__live {
+        background: color-mix(in srgb, var(--color-one) 70%, var(--sk-ink-500));
+    }
+
+    .hours-modal__days {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 18px;
+            bottom: 18px;
+            right: 18px;
+            width: 1px;
+            background: var(--sk-border);
+            pointer-events: none;
+        }
+    }
+
+    .hours-modal__day {
+        display: grid;
+        grid-template-columns: 16px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 10px 12px;
+        min-height: 44px;
+        padding: 8px 10px 8px 12px;
+        border-radius: var(--sk-radius-xs);
+        color: var(--sk-ink-700);
+        transition: background-color var(--sk-dur-fast) ease;
+
+        &.is-today {
+            background: color-mix(in srgb, var(--color-one) 10%, var(--sk-surface));
+            color: var(--sk-ink-900);
+        }
+
+        &.is-closed:not(.is-today) {
+            color: var(--sk-ink-500);
+        }
+    }
+
+    .hours-modal__dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--sk-ink-300);
+        box-shadow: 0 0 0 4px var(--sk-surface);
+        justify-self: center;
+        z-index: 1;
+    }
+
+    .hours-modal__day.is-today .hours-modal__dot {
+        background: var(--color-one);
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-one) 12%, var(--sk-surface));
+    }
+
+    .hours-modal__day-name {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        font-family: "yekan-bold", inherit;
+        font-size: 14px;
+    }
+
+    .hours-modal__today {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: var(--color-one);
+        color: var(--text-primery);
+        font-family: "yekan-medium", inherit;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .hours-modal__range {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        direction: rtl;
+        unicode-bidi: isolate;
+        font-family: "yekan-medium", inherit;
+        font-size: 13px;
+        color: var(--sk-ink-700);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .hours-modal__day.is-today .hours-modal__range {
+        color: var(--sk-ink-900);
+        font-family: "yekan-bold", inherit;
+    }
+
+    .hours-modal__until {
+        font-size: 11px;
+        color: var(--sk-ink-300);
+    }
+
+    .hours-modal__off {
+        display: inline-flex;
+        align-items: center;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: var(--sk-surface-muted);
+        color: var(--sk-ink-500);
+        font-family: "yekan-medium", inherit;
+        font-size: 12px;
+    }
+
+    .hours-modal__cta {
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid var(--sk-border);
+    }
+
+    .hours-modal__cta-text {
+        margin: 0 0 12px;
+        font-family: "yekan-medium", inherit;
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--sk-ink-700);
+    }
+
+    .hours-modal__phones {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .hours-modal__phone {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 8px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--sk-border);
+        background: var(--sk-surface-muted);
+        color: var(--sk-ink-900);
+        font-family: "yekan-medium", inherit;
+        font-size: 13px;
+        text-decoration: none;
+        transition: transform var(--sk-dur-fast) var(--sk-ease),
+            background-color var(--sk-dur-fast) ease,
+            border-color var(--sk-dur-fast) ease,
+            color var(--sk-dur-fast) ease,
+            box-shadow var(--sk-dur-fast) ease;
+
+        i {
+            font-size: 14px;
+            color: var(--color-one);
+        }
+
+        &:active {
+            transform: scale(0.97);
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-one) 22%, transparent);
+        }
+    }
+}
+
+.hours-modal.modal.fade .hours-modal__dialog {
+    transform: translateY(12px) scale(0.97);
+    transition: transform 280ms var(--sk-ease);
+}
+
+.hours-modal.modal.show .hours-modal__dialog {
+    transform: none;
+}
+
+.hours-modal.show .hours-modal__day {
+    animation: hours-row-in 280ms var(--sk-ease) both;
+}
+
+@for $i from 1 through 7 {
+    .hours-modal.show .hours-modal__day:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 40}ms;
+    }
+}
+
+body:has(.hours-modal.show) .modal-backdrop.show {
+    background: rgba(20, 22, 26, 0.52);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+@keyframes hours-row-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes hours-live {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-one) 40%, transparent);
+    }
+    70% {
+        box-shadow: 0 0 0 7px color-mix(in srgb, var(--color-one) 0%, transparent);
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .hours-modal .hours-modal__close:hover {
+        transform: translateY(-1px);
+        background: color-mix(in srgb, var(--color-one) 8%, var(--sk-surface));
+    }
+
+    .hours-modal .hours-modal__phone:hover {
+        background: var(--color-one);
+        border-color: var(--color-one);
+        color: var(--text-primery);
+        box-shadow: 0 8px 20px color-mix(in srgb, var(--color-one) 22%, transparent);
+
+        i {
+            color: var(--text-primery);
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hours-modal {
+        --hours-pad: 18px;
+
+        .hours-modal__dialog {
+            align-items: flex-end;
+            max-width: none;
+            width: 100%;
+            margin: 0;
+            min-height: 100%;
+            min-height: 100dvh;
+        }
+
+        .hours-modal__panel {
+            border-radius: var(--sk-radius-md) var(--sk-radius-md) 0 0;
+            padding-top: 12px;
+            padding-bottom: max(18px, env(safe-area-inset-bottom, 0px));
+            max-height: 92dvh;
+            overflow-y: auto;
+        }
+
+        .hours-modal__handle {
+            display: block;
+        }
+
+        .hours-modal__head {
+            padding-left: 0;
+            margin-top: 4px;
+        }
+
+        .hours-modal__close {
+            top: 8px;
+            left: 10px;
+        }
+    }
+
+    .hours-modal.modal.fade .hours-modal__dialog {
+        transform: translateY(18px);
+    }
+
+    .hours-modal.modal.show .hours-modal__dialog {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hours-modal.modal.fade .hours-modal__dialog,
+    .hours-modal.modal.show .hours-modal__dialog,
+    .hours-modal .hours-modal__close,
+    .hours-modal .hours-modal__phone {
+        transition: none;
+        transform: none;
+        animation: none;
+    }
+
+    .hours-modal.show .hours-modal__day,
+    .hours-modal .hours-modal__status--open .hours-modal__live {
+        animation: none;
+    }
+}

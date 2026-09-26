@@ -1,0 +1,324 @@
+@import "../shared/variables";
+
+/* Shared color surfaces for theme2 internal pages — aligned with PLP (plp-header) tokens */
+
+%sk-inner-surface {
+    background: var(--sk-surface);
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-sm);
+    box-shadow: var(--sk-shadow-xs);
+}
+
+%sk-inner-surface-md {
+    background: var(--sk-surface);
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-md);
+    box-shadow: var(--sk-shadow-xs);
+}
+
+%sk-inner-breadcrumb {
+    .breadcrumb {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+
+        .breadcrumb-item {
+            font-size: 13px;
+
+            + .breadcrumb-item::before {
+                color: var(--sk-ink-300);
+            }
+
+            a {
+                color: var(--sk-ink-500);
+                transition: color var(--sk-dur-fast) ease;
+
+                &:hover {
+                    color: var(--color-one);
+                }
+            }
+
+            &.active {
+                color: var(--sk-ink-700);
+            }
+        }
+    }
+}
+
+%sk-inner-form-control {
+    background: var(--sk-surface-muted) !important;
+    border: 1px solid var(--sk-border) !important;
+    color: var(--sk-ink-900);
+    box-shadow: none !important;
+    transition: border-color var(--sk-dur-fast) ease,
+        background-color var(--sk-dur-fast) ease,
+        box-shadow var(--sk-dur-fast) ease;
+
+    &::placeholder {
+        color: var(--sk-ink-300) !important;
+    }
+
+    &:focus {
+        background: var(--sk-surface) !important;
+        border-color: var(--color-one) !important;
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-one) 16%, transparent) !important;
+    }
+}
+
+/* ---- Page canvas ---- */
+body {
+    background-color: var(--sk-surface-muted) !important;
+}
+
+/* ---- List / static heroes: match plp-header card (hide legacy carousel banner) ---- */
+.hero:not(.hero-auth):not(.hero-search):not(:has(.over-hero.service-image)) {
+    position: relative;
+    height: auto !important;
+    min-height: unset !important;
+    margin-top: 1rem;
+    background: transparent !important;
+
+    .carousel {
+        display: none !important;
+    }
+
+    .over-hero {
+        position: relative !important;
+        inset: auto !important;
+        background: none !important;
+        padding: 0 !important;
+
+        .hero-content.container {
+            @extend %sk-inner-surface-md;
+            padding: 1.25rem 1.5rem;
+            @extend %sk-inner-breadcrumb;
+
+            h1,
+            .light,
+            .color-title {
+                color: var(--color-dark) !important;
+            }
+
+            a.text-light,
+            .text-light {
+                color: var(--sk-ink-500) !important;
+            }
+
+            .breadcrumb-item.active.text-light,
+            .breadcrumb-item.active.color-title {
+                color: var(--sk-ink-700) !important;
+            }
+        }
+    }
+}
+
+.hero.hero-auth,
+.hero.hero-search {
+    background: transparent !important;
+
+    > .hero-content.container {
+        @extend %sk-inner-surface-md;
+        margin-top: 1rem;
+        padding: 1.25rem 1.5rem;
+        @extend %sk-inner-breadcrumb;
+    }
+}
+
+.hero .over-hero.service-image {
+    border-radius: var(--sk-radius-md);
+    overflow: hidden;
+    background-size: cover !important;
+    background-position: center !important;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            0deg,
+            color-mix(in srgb, var(--sk-ink-900) 72%, transparent) 0%,
+            color-mix(in srgb, var(--sk-ink-900) 38%, transparent) 100%
+        );
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+/* ---- Cards & content blocks ---- */
+.list-services .list-card,
+.search-page .result,
+.search-page .search-page__results,
+.samples .single-sample,
+.seo-box .box,
+.about-us .about-inner,
+.conatct-us .contact-info,
+.product-page .product-info,
+.product-page .related-products .swiper,
+.pdp-page .pdp-related-swiper,
+.panel .side-panel,
+.panel .content .edit-info .login-form,
+.panel .content .order-detail .order-info,
+.panel .content .order-detail .user-info,
+.panel .content .order-detail .address-info,
+.panel .content .order-detail #factor,
+.panel .content .box-dash,
+.cart .sidebar-cart,
+.cart .checkout .products .product-item,
+.cart .addresses .address-item,
+.faq-section .accordion-item,
+.login-page .login-form {
+    @extend %sk-inner-surface;
+    padding: 1.5rem;
+}
+
+/* ---- Cart sidebar (Bootstrap utility overrides) ---- */
+.cart .sidebar-cart {
+    background: var(--sk-surface) !important;
+    border: 1px solid var(--sk-border);
+    box-shadow: var(--sk-shadow-xs) !important;
+}
+
+.list-services .list-card,
+.search-page .result .services .list-card {
+    border-radius: var(--sk-radius-sm);
+    overflow: hidden;
+}
+
+.related-services {
+    background: var(--sk-surface-muted) !important;
+
+    .team-card {
+        @extend %sk-inner-surface;
+        box-shadow: var(--sk-shadow-xs);
+    }
+}
+
+/* ---- Panel sidebar: white card + orange active (not black) ---- */
+.panel .side-panel {
+    border: 1px solid var(--sk-border) !important;
+    background: var(--sk-surface) !important;
+    border-radius: var(--sk-radius-sm) !important;
+    box-shadow: var(--sk-shadow-xs);
+
+    .side-box li a {
+        color: var(--sk-ink-700) !important;
+        background: var(--sk-surface-muted) !important;
+        border: 1px solid transparent;
+        backdrop-filter: none;
+        transition: background-color var(--sk-dur-fast) ease,
+            color var(--sk-dur-fast) ease,
+            border-color var(--sk-dur-fast) ease,
+            padding-right var(--sk-dur-fast) ease;
+
+        i {
+            background: var(--sk-surface) !important;
+            color: var(--sk-ink-500) !important;
+            box-shadow: none;
+            border: 1px solid var(--sk-border);
+        }
+
+        &.active {
+            color: var(--color-one) !important;
+            background: color-mix(in srgb, var(--color-one) 10%, var(--sk-surface)) !important;
+            border-color: color-mix(in srgb, var(--color-one) 28%, var(--sk-border)) !important;
+            font-family: "yekan-medium", inherit !important;
+
+            i {
+                color: var(--color-one) !important;
+                border-color: color-mix(in srgb, var(--color-one) 35%, var(--sk-border));
+            }
+        }
+    }
+}
+
+.panel .content .box-dash .icon {
+    background: var(--color-one);
+}
+
+/* ---- Cart checkout steps ---- */
+.cart .steps ul li a {
+    color: var(--sk-ink-300);
+    background: unset;
+
+    i {
+        border-bottom: 3px solid var(--sk-ink-300);
+    }
+}
+
+.cart .steps ul li.active a {
+    color: var(--sk-ink-900);
+
+    i {
+        border-bottom: 3px solid var(--color-one) !important;
+        color: var(--color-one);
+    }
+
+    span {
+        color: var(--sk-ink-900) !important;
+    }
+}
+
+/* ---- Forms (panel, auth, comments, contact, cart) ---- */
+.panel .content,
+.login-page,
+.conatct-us,
+.comments,
+.cart,
+.product-page .tabs {
+    .form-control,
+    .form-select,
+    textarea {
+        @extend %sk-inner-form-control;
+    }
+}
+
+.conatct-us .input-box {
+    background: var(--sk-surface-muted);
+    border: 1px solid var(--sk-border);
+}
+
+/* ---- FAQ accordion ---- */
+.faq-section .accordion-item {
+    border: 1px solid var(--sk-border) !important;
+    background: var(--sk-surface) !important;
+    border-radius: var(--sk-radius-xs) !important;
+
+    .accordion-button {
+        color: var(--sk-ink-900);
+        background: transparent;
+
+        &:not(.collapsed) {
+            background: var(--sk-surface-muted) !important;
+            color: var(--sk-ink-900);
+        }
+    }
+}
+
+/* ---- About / static content text ---- */
+.about-us .about-inner,
+.seo-box .content,
+.service-description .description-box .box .content {
+    color: var(--sk-ink-700);
+
+    p,
+    li {
+        color: inherit;
+    }
+}
+
+.color-title {
+    color: var(--sk-ink-900) !important;
+}
+
+@media (max-width: 576px) {
+    .hero:not(.hero-auth):not(.hero-search):not(:has(.over-hero.service-image)) .over-hero .hero-content.container,
+    .hero.hero-auth > .hero-content.container,
+    .hero.hero-search > .hero-content.container {
+        padding: 1rem 1.1rem;
+    }
+}

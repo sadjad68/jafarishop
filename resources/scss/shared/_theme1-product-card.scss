@@ -1,0 +1,344 @@
+// Theme1 product tile — framed catalog: inset photo, centered name and price.
+
+body.theme-theme1 {
+    --t1p-r: var(--t1-r-lg, 26px);
+    --t1p-ease: var(--t1-ease, cubic-bezier(0.23, 1, 0.32, 1));
+}
+
+body.theme-theme1 .t1-pbox {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    text-decoration: none !important;
+    color: inherit;
+    border-radius: var(--t1p-r);
+
+    &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-one) 42%, transparent);
+    }
+
+    &:active .t1-pbox__inner {
+        transform: scale(0.985);
+    }
+}
+
+body.theme-theme1 .t1-pbox__inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+    background: var(--color-one);
+    border: 1px solid color-mix(in srgb, var(--color-one) 28%, transparent);
+    box-shadow: var(--t1-shadow-md, 0 14px 34px color-mix(in srgb, var(--color-one) 16%, transparent));
+    transition:
+        transform 0.45s var(--t1p-ease),
+        box-shadow 0.45s var(--t1p-ease),
+        border-color 0.24s ease;
+}
+
+body.theme-theme1 .t1-pbox__media {
+    position: relative;
+    overflow: hidden;
+    flex: 1 1 auto;
+    width: 100%;
+    aspect-ratio: 1;
+    background:
+        radial-gradient(
+            18rem 14rem at 80% -10%,
+            color-mix(in srgb, var(--color-two) 28%, transparent) 0%,
+            transparent 62%
+        ),
+        var(--color-one);
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(
+            to top,
+            color-mix(in srgb, var(--color-one) 78%, #000) 0%,
+            color-mix(in srgb, var(--color-one) 22%, transparent) 48%,
+            transparent 68%
+        );
+        opacity: 0.92;
+        transition: opacity 0.45s ease;
+    }
+}
+
+body.theme-theme1 .t1-pbox__img {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.001);
+    transition: transform 0.8s var(--t1p-ease);
+}
+
+body.theme-theme1 .t1-pbox__chip {
+    position: absolute;
+    top: 10px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    padding: 0 11px;
+    border-radius: 999px;
+    font-family: pelak-bold, inherit;
+    font-size: 12px;
+    line-height: 1;
+    color: var(--text-primery, #fff);
+
+    &--opt {
+        inset-inline-start: 10px;
+        width: 30px;
+        padding: 0;
+        color: var(--color-one);
+        background: color-mix(in srgb, #fff 78%, transparent);
+        border: 1px solid color-mix(in srgb, var(--color-one) 16%, transparent);
+        backdrop-filter: blur(10px);
+    }
+}
+
+body.theme-theme1 .t1-pbox__timer {
+    position: absolute;
+    inset-inline: 8px;
+    top: 8px;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3px;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--color-one) 72%, #000);
+    backdrop-filter: blur(12px) saturate(140%);
+    color: var(--text-primery, #fff);
+
+    li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1px;
+        margin: 0;
+        padding: 2px 0;
+    }
+
+    span {
+        font-family: pelak-num, inherit;
+        font-size: 12px;
+        line-height: 1.2;
+    }
+
+    small {
+        font-size: 9px;
+        opacity: 0.78;
+    }
+}
+
+body.theme-theme1 .t1-pbox:has(.t1-pbox__timer) .t1-pbox__chip--opt {
+    top: 54px;
+}
+
+body.theme-theme1 .t1-pbox__body {
+    position: absolute;
+    inset-inline: 12px;
+    bottom: 12px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    overflow: hidden;
+    padding: 14px 14px 15px;
+    text-align: center;
+    border-radius: var(--t1-r-sm, 12px);
+    border: 1px solid color-mix(in srgb, var(--text-primery, #fff) 22%, transparent);
+    background: color-mix(in srgb, var(--color-one) 84%, transparent);
+    backdrop-filter: blur(16px) saturate(160%);
+    box-shadow: 0 16px 36px color-mix(in srgb, var(--color-one) 38%, transparent);
+    color: var(--text-primery, #fff);
+    transition: background-color 0.24s ease;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset-inline: 18%;
+        top: -40%;
+        height: 70%;
+        pointer-events: none;
+        background: radial-gradient(
+            closest-side,
+            color-mix(in srgb, var(--color-two) 42%, transparent),
+            transparent 72%
+        );
+    }
+}
+
+body.theme-theme1 .t1-pbox__title {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    max-width: 100%;
+    font-family: pelak-bold, inherit;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    color: var(--text-primery, #fff);
+    text-align: center;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+body.theme-theme1 .t1-pbox__price {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+body.theme-theme1 .t1-pbox__compare {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+body.theme-theme1 .t1-pbox__off {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 20px;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: #ef4056;
+    color: #fff;
+    font-family: pelak-bold, inherit;
+    font-size: 11px;
+    line-height: 1.3;
+    box-shadow: 0 6px 14px color-mix(in srgb, #ef4056 45%, transparent);
+}
+
+body.theme-theme1 .t1-pbox__was {
+    font-family: pelak-num, inherit;
+    font-size: 12px;
+    line-height: 1.3;
+    color: color-mix(in srgb, var(--text-primery, #fff) 55%, transparent);
+    text-decoration: line-through;
+}
+
+body.theme-theme1 .t1-pbox__now {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    margin: 0;
+    color: var(--text-primery, #fff);
+}
+
+body.theme-theme1 .t1-pbox__amount {
+    font-family: pelak-num, inherit;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: inherit;
+}
+
+body.theme-theme1 .t1-pbox__unit {
+    font-family: pelak-medium, inherit;
+    font-size: 11px;
+    line-height: 1;
+    color: inherit;
+    opacity: 0.78;
+}
+
+body.theme-theme1 .t1-pbox__status {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0;
+    width: 100%;
+    font-family: pelak-medium, inherit;
+    font-size: 13px;
+    color: var(--text-primery, #fff);
+    text-align: center;
+}
+
+body.theme-theme1 .t1-pbox--out .t1-pbox__img {
+    opacity: 0.72;
+    filter: saturate(0.72);
+}
+
+body.theme-theme1 .t1-pbox--out .t1-pbox__status {
+    color: #ffb4bc;
+}
+
+body.theme-theme1 .products-grid__item,
+body.theme-theme1 .plp-grid > [class*="col-"],
+body.theme-theme1 .lists > [class*="col-"],
+body.theme-theme1 .related-products .swiper-slide {
+    display: flex;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    body.theme-theme1 .t1-pbox:hover .t1-pbox__inner {
+        transform: translateY(-6px);
+        border-color: color-mix(in srgb, var(--color-one) 48%, transparent);
+        box-shadow: var(--t1-shadow-lg, 0 28px 64px color-mix(in srgb, var(--color-one) 22%, transparent));
+    }
+
+    body.theme-theme1 .t1-pbox:hover .t1-pbox__media::after {
+        opacity: 1;
+    }
+
+    body.theme-theme1 .t1-pbox:hover .t1-pbox__img {
+        transform: scale(1.07);
+    }
+
+    body.theme-theme1 .t1-pbox:hover .t1-pbox__body {
+        background: color-mix(in srgb, var(--color-one) 94%, transparent);
+    }
+}
+
+@media (max-width: 575.98px) {
+    body.theme-theme1 .t1-pbox__body {
+        inset-inline: 8px;
+        bottom: 8px;
+        padding: 10px 10px 11px;
+        gap: 4px;
+    }
+
+    body.theme-theme1 .t1-pbox__title {
+        font-size: 13.5px;
+        line-height: 1.55;
+    }
+
+    body.theme-theme1 .t1-pbox__amount {
+        font-size: 17px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.theme-theme1 .t1-pbox__inner,
+    body.theme-theme1 .t1-pbox__img,
+    body.theme-theme1 .t1-pbox:active .t1-pbox__inner {
+        transition: none;
+        transform: none !important;
+    }
+}

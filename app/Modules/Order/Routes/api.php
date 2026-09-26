@@ -1,0 +1,20 @@
+<?php
+
+use App\Modules\Product\Http\Controllers\Api\V1\BrandController;
+use App\Modules\Product\Http\Controllers\Api\V1\ProductCategoryController;
+use App\Modules\Product\Http\Controllers\Api\V1\ProductController;
+use Illuminate\Http\Request;
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+Route::name('api.')->group(function () {
+
+});

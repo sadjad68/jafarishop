@@ -1,0 +1,11 @@
+{
+    "name": "Tag",
+    "alias": "tag",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "App\\Modules\\Tag\\Providers\\TagServiceProvider"
+    ],
+    "files": []
+}

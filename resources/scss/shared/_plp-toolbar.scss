@@ -1,0 +1,173 @@
+/* Product list toolbar — search field + horizontal sort chips */
+
+.list-product > .container > .row.mb-3,
+.list-product .row.w-100.m-0.mb-3,
+.list-product .plp-toolbar__row {
+    align-items: center;
+    gap: 16px;
+}
+
+.list-product .search {
+    input.form-control {
+        border-radius: 100px;
+        background: var(--sk-surface-muted) !important;
+        border: 1px solid var(--sk-border) !important;
+        box-shadow: none !important;
+        padding: 12px 48px 12px 20px;
+        font-size: 14px;
+        transition: border-color var(--sk-dur-fast) ease,
+            background-color var(--sk-dur-fast) ease,
+            box-shadow var(--sk-dur-fast) ease;
+
+        &::placeholder {
+            color: var(--sk-ink-300) !important;
+        }
+
+        &:focus {
+            background: var(--sk-surface) !important;
+            border-color: var(--color-one) !important;
+            box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-one) 16%, transparent) !important;
+        }
+    }
+
+    .btn-search {
+        color: var(--sk-ink-500);
+        transition: color var(--sk-dur-fast) ease;
+
+        &:hover {
+            color: var(--color-one);
+        }
+    }
+}
+
+.plp-stage .plp-toolbar__row {
+    padding: 10px 12px;
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-sm);
+    background: var(--sk-surface);
+    box-shadow: var(--sk-shadow-xs);
+
+    @media (max-width: 991px) {
+        padding: 8px 10px;
+    }
+}
+
+.plp-stage .search input.form-control {
+    background: var(--sk-surface-muted) !important;
+}
+
+.plp-stage .sort-toolbar {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
+}
+
+.list-product .sort-toolbar {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-sm);
+    background: var(--sk-surface);
+    box-shadow: var(--sk-shadow-xs);
+
+    &__label {
+        color: var(--sk-ink-500);
+        font-family: "yekan-medium", inherit;
+        font-size: 13px;
+        white-space: nowrap;
+        gap: 8px;
+    }
+
+    &__mark {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--color-one);
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-one) 18%, transparent);
+        flex-shrink: 0;
+    }
+
+    &__options {
+        flex-wrap: wrap;
+    }
+
+    .form-check {
+        position: relative;
+        padding: 0;
+        margin: 0;
+
+        input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            cursor: pointer;
+            z-index: 1;
+
+            &:checked + label {
+                background: var(--color-one);
+                border-color: var(--color-one);
+                color: var(--text-primery);
+                box-shadow: 0 6px 16px color-mix(in srgb, var(--color-one) 24%, transparent);
+            }
+
+            &:focus-visible + label {
+                outline: none;
+                box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-one) 22%, transparent);
+            }
+        }
+
+        label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100px;
+            border: 1px solid var(--sk-border);
+            background: var(--sk-surface-muted);
+            color: var(--sk-ink-700);
+            padding: 8px 16px !important;
+            font-family: "yekan-regular", inherit;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color var(--sk-dur-fast) ease,
+                border-color var(--sk-dur-fast) ease,
+                color var(--sk-dur-fast) ease,
+                box-shadow var(--sk-dur-fast) ease,
+                transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        &:hover label {
+            border-color: color-mix(in srgb, var(--color-one) 40%, var(--sk-border));
+            color: var(--sk-ink-900);
+        }
+
+        input:checked + label:hover {
+            color: var(--text-primery);
+        }
+
+        &:active label {
+            transform: scale(0.97);
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .list-product .sort-toolbar {
+        padding: 8px 10px;
+
+        &__options {
+            width: 100%;
+        }
+
+        .form-check {
+            flex: 1 1 auto;
+
+            label {
+                width: 100%;
+            }
+        }
+    }
+}

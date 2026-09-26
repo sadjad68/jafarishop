@@ -1,0 +1,244 @@
+/* Product detail — variant / specification selector (Shopika pill language) */
+
+.pdp-variants {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 16px 16px 4px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    &__group {
+        padding: 14px 0;
+
+        &:first-child {
+            padding-top: 0;
+        }
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid var(--sk-border, rgba(20, 22, 26, 0.08));
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+        }
+    }
+}
+
+.pdp-variant {
+    &__header {
+        margin-bottom: 12px;
+    }
+
+    &__label {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 10px;
+        font-size: 12px;
+        font-family: "yekan-medium", inherit;
+        color: var(--sk-ink-500, #71757d);
+        line-height: 1.4;
+
+        &::before {
+            content: "";
+            width: 3px;
+            height: 14px;
+            border-radius: 100px;
+            background: var(--color-one);
+            flex-shrink: 0;
+        }
+    }
+
+    &__chosen {
+        color: var(--color-dark);
+        font-style: normal;
+
+        &::before {
+            content: "·";
+            margin-inline-end: 8px;
+            color: color-mix(in srgb, var(--color-one) 70%, transparent);
+        }
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        &--colors {
+            gap: 12px;
+        }
+    }
+
+    &__chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 42px;
+        padding: 10px 18px;
+        border: 1px solid var(--sk-border, rgba(20, 22, 26, 0.08));
+        border-radius: 100px;
+        background: var(--sk-surface, #fff);
+        color: var(--sk-ink-700, #3a3d44);
+        font-size: 13px;
+        font-family: "yekan-medium", inherit;
+        line-height: 1.35;
+        cursor: pointer;
+        white-space: nowrap;
+        box-shadow: var(--sk-shadow-xs, 0 1px 2px rgba(20, 22, 26, 0.05));
+        transition:
+            background-color var(--sk-dur-fast, 0.22s) ease,
+            border-color var(--sk-dur-fast, 0.22s) ease,
+            color var(--sk-dur-fast, 0.22s) ease,
+            box-shadow var(--sk-dur-fast, 0.22s) ease,
+            transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+
+        &:hover:not(:disabled):not(.pdp-variant__chip--active) {
+            border-color: color-mix(in srgb, var(--color-one) 40%, var(--sk-border, rgba(20, 22, 26, 0.08)));
+            background: color-mix(in srgb, var(--color-one) 6%, #fff);
+            box-shadow: none;
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.97);
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-one) 22%, transparent);
+        }
+
+        &--active {
+            border-color: var(--color-one);
+            background: color-mix(in srgb, var(--color-one) 12%, #fff);
+            color: var(--color-dark);
+            box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-one) 35%, transparent);
+
+            .pdp-variant__chip-indicator {
+                border-color: var(--color-one);
+                background: var(--color-one);
+                box-shadow: none;
+            }
+        }
+
+        &--disabled,
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none;
+        }
+    }
+
+    &__chip-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: 1.5px solid var(--sk-ink-300, #aeb2ba);
+        background: transparent;
+        flex-shrink: 0;
+        transition:
+            border-color var(--sk-dur-fast, 0.22s) ease,
+            background-color var(--sk-dur-fast, 0.22s) ease,
+            box-shadow var(--sk-dur-fast, 0.22s) ease;
+    }
+
+    &__chip-text {
+        line-height: 1.35;
+    }
+
+    &__swatch {
+        position: relative;
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0;
+        border: none;
+        border-radius: var(--sk-radius-xs, 10px);
+        cursor: pointer;
+        box-shadow: inset 0 0 0 1px var(--sk-border, rgba(20, 22, 26, 0.12));
+        transition:
+            transform var(--sk-dur-fast, 0.22s) var(--sk-ease, cubic-bezier(0.16, 1, 0.3, 1)),
+            box-shadow var(--sk-dur-fast, 0.22s) ease;
+
+        &:hover:not(:disabled):not(.pdp-variant__swatch--active) {
+            transform: translateY(-2px);
+            box-shadow:
+                inset 0 0 0 1px var(--sk-ink-300, #aeb2ba),
+                var(--sk-shadow-sm, 0 6px 16px rgba(20, 22, 26, 0.08));
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow:
+                inset 0 0 0 1px var(--sk-ink-300, #aeb2ba),
+                0 0 0 4px color-mix(in srgb, var(--color-one) 22%, transparent);
+        }
+
+        &--active {
+            box-shadow:
+                inset 0 0 0 2px var(--color-one),
+                0 0 0 4px color-mix(in srgb, var(--color-one) 14%, transparent);
+            transform: translateY(-1px);
+        }
+
+        &--light {
+            box-shadow: inset 0 0 0 1px var(--sk-ink-300, #aeb2ba);
+        }
+
+        &--disabled,
+        &:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+    }
+
+    &__swatch-check {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.95rem;
+        line-height: 1;
+        color: #fff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+        pointer-events: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .pdp-variants {
+        padding: 14px;
+    }
+
+    .pdp-variant {
+        &__chip {
+            min-height: 40px;
+            padding: 9px 16px;
+            font-size: 12px;
+        }
+
+        &__swatch {
+            width: 2.25rem;
+            height: 2.25rem;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pdp-variant__chip,
+    .pdp-variant__chip-indicator,
+    .pdp-variant__swatch {
+        transition: none !important;
+    }
+}

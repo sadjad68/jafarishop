@@ -1,0 +1,123 @@
+.team {
+    .swiper-team {
+        height: unset !important;
+        padding-inline: clamp(1rem, 4vw, 3rem);
+        padding-block: 6px 10px;
+    }
+
+    .swiper-slide {
+        background: transparent !important;
+        height: auto;
+    }
+
+    .team-card {
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        border: 1px solid var(--t1-ink-line);
+        background: var(--t1-ink-surface);
+        border-radius: var(--t1-r-lg);
+        box-shadow: none;
+        text-align: right;
+        transition:
+            transform var(--t1-dur-slow) var(--t1-ease),
+            box-shadow var(--t1-dur-slow) var(--t1-ease),
+            border-color var(--t1-dur) ease;
+    }
+
+    .team-media {
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        aspect-ratio: 3 / 4;
+        border-radius: 0;
+        background: var(--t1-ink-surface-2);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transform: scale(1.001);
+            transition: transform var(--t1-dur-img) var(--t1-ease);
+        }
+    }
+
+    .information {
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        padding: 64px 18px 18px;
+        background: linear-gradient(
+            to top,
+            color-mix(in srgb, var(--color-one) 38%, #000) 0%,
+            color-mix(in srgb, var(--color-one) 22%, transparent) 42%,
+            transparent 100%
+        );
+    }
+
+    .name {
+        font-family: pelak-bold, inherit;
+        font-size: 16.5px;
+        color: #fff;
+        margin: 0;
+    }
+
+    .expert {
+        font-size: 13px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+    }
+
+    .team-card__phone {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        min-height: 38px;
+        margin-top: 10px;
+        padding: 7px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.26);
+        border-radius: var(--t1-r-pill);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        color: #fff;
+        font-family: pelak-medium, inherit;
+        font-size: 13px;
+        text-decoration: none;
+        transition:
+            background-color var(--t1-dur) ease,
+            color var(--t1-dur) ease,
+            border-color var(--t1-dur) ease;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .team .team-card:hover {
+        transform: translateY(-5px);
+        border-color: color-mix(in srgb, var(--t1-brand) 48%, transparent);
+        box-shadow: var(--t1-shadow-dark);
+    }
+
+    .team .team-card:hover .team-media img {
+        transform: scale(1.06);
+    }
+
+    .team .team-card__phone:hover {
+        background: var(--t1-brand);
+        border-color: var(--t1-brand);
+        color: var(--t1-on-brand);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .team .team-card,
+    .team .team-media img {
+        transition: none;
+        transform: none !important;
+    }
+}

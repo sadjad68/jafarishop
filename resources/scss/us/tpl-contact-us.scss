@@ -1,0 +1,161 @@
+
+@import '../shared/page-banner', '../shared/inner-pages';
+
+.hero{
+    .header-inner{
+        img{
+            height: 350px;
+            object-fit: cover;
+        }
+    }
+    .over-hero{
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.48) 100%);
+        z-index: 1;
+        padding-bottom: 1rem;
+        .breadcrumb-item + .breadcrumb-item::before{
+            color: rgba(var(--color-light),1);
+        }
+        .breadcrumb-item{
+            font-size: 12px;
+        }
+        .img-header-inner{
+            img{
+                border-radius: var(--service-img-radius);
+                box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+            }
+        }
+        .hero-content{
+            h1{
+                font-size: 50px;
+            }
+            p{
+                font-size: 18px;
+                line-height: 1.75;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3; /* number of lines to show */
+                        line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+        }
+    }
+}
+.banner-scrollable{
+    background-color: var(--color-one);
+    .scroll-text{
+        width: max-content;
+        -moz-transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+        -moz-animation: my-animation 50s linear infinite;
+        -webkit-animation: my-animation 50s linear infinite;
+        animation: my-animation 50s linear infinite;
+        li{
+            font-family: sans-serif !important;
+            list-style:inherit !important;
+            margin-left: 50px;
+            text-transform:uppercase;
+            font-size: 42px;
+            color: var(--text-primery);
+        }
+    }
+}
+ /* for Firefox */
+ @-moz-keyframes my-animation {
+    from { -moz-transform: translateX(-100%); }
+    to { -moz-transform: translateX(-100%); }
+  }
+
+  /* for Chrome */
+  @-webkit-keyframes my-animation {
+    from { -webkit-transform: translateX(-100%); }
+    to { -webkit-transform: translateX(100%); }
+  }
+
+  @keyframes my-animation {
+    from {
+      -moz-transform: translateX(-20%);
+      -webkit-transform: translateX(-20%);
+      transform: translateX(-20%);
+    }
+    to {
+      -moz-transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+  }
+  @keyframes my-animation2 {
+    from {
+      -moz-transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+    }
+    to {
+      -moz-transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+  }
+  @keyframes my-animation3 {
+    from {
+      -moz-transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+    }
+    to {
+      -moz-transform: translateX(70%);
+      -webkit-transform: translateX(70%);
+      transform: translateX(70%);
+    }
+  }
+  .conatct-us{
+    .contact-info{
+        background-color: rgba(var(--color-light),1);
+        padding: 40px;
+        border-radius: var(--about-img-one);
+        .info{
+            li{
+                margin-bottom: 1.5rem;
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    .bi-youtube{
+        color: #FF0000;
+      }
+      .bi-linkedin{
+        color: #0A66C2;
+      }
+      .bi-facebook{
+        color: #316FF6;
+      }
+      .bi-instagram{
+        background: -webkit-linear-gradient(#4762d8,#da2981,#ffd369);
+        background-clip: border-box;
+      background-clip: border-box;
+      background-clip: border-box;
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      }
+      .bi-tiktok{
+        color: #000;
+      }
+      .input-box{
+        background-color: rgba(var(--color-light),1);
+        padding: 15px 10px;
+        border-radius: var(--gallry-img-thumb);
+        margin-bottom: 1rem;
+        &:last-child{
+          margin-bottom: 0;
+        }
+        input{
+          direction: rtl;
+          ::placeholder{
+            color: var(--color-dark) !important;
+          }
+        }
+      }
+  }

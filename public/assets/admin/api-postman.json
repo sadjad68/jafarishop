@@ -1,0 +1,1504 @@
+{
+	"info": {
+		"_postman_id": "c6151c7b-72dd-4640-8e05-90099ae8a0f8",
+		"name": "cms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38345097"
+	},
+	"item": [
+		{
+			"name": "product-category",
+			"item": [
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/product-category/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"product-category",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"ساعت مچی مردانه\",\r\n    \"description\": \"مجموعه‌ای از بهترین ساعت‌های مچی مردانه با طراحی کلاسیک، اسپرت و هوشمند. مناسب برای استفاده روزمره، رسمی و ورزشی.\",\r\n    \"show_in_first_page\": true,\r\n    \"active\": true,\r\n    \"parent_id\": 42,\r\n    \"url\": \"saat-machi-mardane\",\r\n    \"seo\": {\r\n        \"title_seo\": \"خرید ساعت مچی مردانه اصل | جدیدترین مدل‌های ۱۴۰۴\",\r\n        \"description_seo\": \"بهترین ساعت‌های مچی مردانه با گارانتی اصالت کالا. مدل‌های کلاسیک، اسپرت و هوشمند از برندهای معتبر با تخفیف ویژه.\",\r\n        \"h1\": \"ساعت مچی مردانه\",\r\n        \"noindex\": false\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/product-category/edit/1903",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"product-category",
+								"edit",
+								"1903"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/product-category/show/1906",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"product-category",
+								"show",
+								"1906"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"ساعت مچی مردانه\",\r\n  \"description\": \"مجموعه‌ای از بهترین ساعت‌های مچی مردانه با طراحی کلاسیک، اسپرت و هوشمند. مناسب برای استفاده روزمره، رسمی و ورزشی.\",\r\n  \"show_in_first_page\": true,\r\n  \"active\": true,\r\n  \"parent_id\": 42,\r\n  \"url\": \"saat-machi-mardane789\",\r\n  \"seo\": {\r\n    \"title_seo\": \"خرید ساعت مچی مردانه اصل | جدیدترین مدل‌های ۱۴۰۴\",\r\n    \"description_seo\": \"بهترین ساعت‌های مچی مردانه با گارانتی اصالت کالا. مدل‌های کلاسیک، اسپرت و هوشمند از برندهای معتبر با تخفیف ویژه.\",\r\n    \"h1\": \"ساعت مچی مردانه\",\r\n    \"noindex\": false\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/product-category/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"product-category",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let res = pm.response.json();\r",
+									"\r",
+									"if (res.access_token) {\r",
+									"    pm.collectionVariables.set(\"token\", res.access_token);\r",
+									"    console.log(\"توکن با موفقیت ساخته شد :\", res.access_token);\r",
+									"} else {\r",
+									"    console.warn(\"خطا :\", res);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let res = pm.response.json();\r",
+									"\r",
+									"if (res.access_token) {\r",
+									"    pm.collectionVariables.set(\"token\", res.access_token);\r",
+									"    console.log(\"توکن با موفقیت آپدیت شد :\", res.access_token);\r",
+									"} else {\r",
+									"    console.warn(\"خطا :\", res);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let res = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token\", null);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "specification",
+					"item": [
+						{
+							"name": "select",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[1827,1828,89] \r\n// شناسه مقدار های مشخصه ها ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/product/specification/select/{{product_simple_id}}/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"product",
+										"specification",
+										"select",
+										"{{product_simple_id}}",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "text",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"2076\" : [\r\n    \"خوب\",\"عالی\"\r\n  ],\r\n  \"29\" : [\r\n    \"خوب\",\"عالی\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/product/specification/text/{{product_simple_id}}/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"product",
+										"specification",
+										"text",
+										"{{product_simple_id}}",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "image",
+					"item": [
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image[]",
+											"type": "file",
+											"src": [
+												"/Users/hamgaman/Downloads/Screenshot 2025-12-02 at 13-57-27 سبدهای خرید.png",
+												"/Users/hamgaman/Downloads/Screenshot 2025-12-01 at 10-52-10 گالری.png"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/product/image/create/{{product_simple_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"product",
+										"image",
+										"create",
+										"{{product_simple_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add-variants",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "variants",
+											"value": "{\"{{image_simple_id}}\":[\"{{variant_id}}\"], \"{{variant_id}}\"}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/product/image/add-variants/{{image_simple_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"product",
+										"image",
+										"add-variants",
+										"{{image_simple_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/product/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"product",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "زنانه",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/product/show/{{product_simple_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"product",
+								"show",
+								"{{product_simple_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"زعفران سرگل ممتاز قائنات - ۱ گرم\",\r\n  // عنوان محصول — باید شامل: نام + نوع + وزن + ویژگی کلیدی\r\n  // مثال: \"کفش نایک ایر جردن - سایز ۴۲\"\r\n\r\n  \"url\": \"zaferan-sargol-ghainat-1g\",\r\n  // slug منحصر به فرد — فقط حروف کوچک، خط تیره، بدون فاصله\r\n  // حتماً چک کن قبلاً استفاده نشده باشه\r\n\r\n  \"price\": 185000,\r\n  // قیمت اصلی (به تومان) — بدون تخفیف\r\n\r\n  \"discounted_price\": 159000,\r\n  // قیمت با تخفیف — باید کمتر از price باشه\r\n  // اگر تخفیف نداره، حذف کن یا برابر price بذار\r\n\r\n  \"description\": \"زعفران سرگل ۱۰۰٪ اصل قائنات با رنگ‌دهی بالا (۲۶+)، عطر قوی و طعم اصیل. بسته‌بندی بهداشتی در ظرف کریستالی با درب فلزی. مناسب برای آشپزی، دمنوش و هدیه.\",\r\n  // توضیح کامل محصول — حداقل ۱۲۰ کاراکتر، شامل کلمات کلیدی\r\n\r\n  \"active\": true,\r\n  // نمایش در سایت؟ true = بله، false = مخفی (مثلاً در حال ویرایش)\r\n\r\n  \"brand_id\": 12,\r\n  // ID برند — از /prerequisite/brands/ بگیر\r\n  // مثال: 12 = \"زرین زعفران\"\r\n\r\n  \"weight\": 1,\r\n  // وزن به گرم — برای محاسبه ارسال و موجودی\r\n\r\n  \"related\": [245, 248, 251],\r\n  // محصولات مرتبط — ID محصولات مشابه\r\n  // نمایش در بخش \"محصولات مشابه\"\r\n\r\n  \"complement\": [189, 192],\r\n  // محصولات مکمل — مثلاً نبات، هاون، قوری\r\n  // نمایش در \"این محصول رو با این بخر\"\r\n\r\n  \"seo\": {\r\n    \"title_seo\": \"خرید زعفران سرگل اصل قائنات ۱ گرم | قیمت روز + ارسال رایگان\",\r\n    // عنوان صفحه در گوگل — حداکثر ۶۰ کاراکتر\r\n    // شامل کلمه کلیدی + قیمت + مزیت\r\n\r\n    \"description_seo\": \"زعفران سرگل ممتاز قائنات با گارانتی اصالت و آزمایشگاه معتبر. رنگ‌دهی بالا، عطر قوی و بسته‌بندی لوکس. مناسب آشپزی و هدیه. تحویل ۲۴ ساعته تهران.\",\r\n    // توضیح در نتایج گوگل — حداکثر ۱۶۰ کاراکتر\r\n\r\n    \"h1\": \"زعفران سرگل ممتاز قائنات - ۱ گرم\",\r\n    // عنوان اصلی صفحه — بهتره با title یکسان باشه\r\n\r\n    \"noindex\": false\r\n    // false = ایندکس بشه | true = مخفی از گوگل (فقط برای تست)\r\n  },\r\n\r\n  \"main_variant_specification_id\": 88,\r\n  // الزامی! ID مشخصه اصلی برای واریانت\r\n  // مثلاً: 88 = \"وزن\" → بعدش می‌تونی ۱، ۵، ۱۰ گرم اضافه کنی\r\n\r\n  \"stock\": 150,\r\n  // موجودی انبار — عدد صحیح\r\n\r\n  \"show_in_first_page\": true,\r\n  // نمایش در صفحه اصلی؟ true = بله (فقط محصولات پرفروش)\r\n\r\n  \"categories\": [16, 18],\r\n  // ID دسته‌بندی‌ها — از /product-category/list بگیر\r\n  // مثال: 16 = \"زعفران\"، 18 = \"محصولات خوراکی\"\r\n\r\n  \"tags\": [3, 5, 4, 27],\r\n  // ID تگ‌ها — از /prerequisite/tags بگیر\r\n  // مثال: 27 = \"زعفران قائنات\"\r\n\r\n  \"properties\": [\r\n    \"زعفران سرگل ۱۰۰٪ اصل — بدون ناخالصی\",\r\n    \"رنگ‌دهی فوق‌العاده (۲۶+ واحد) — غذاتو مثل خورشید طلایی می‌کنه!\",\r\n    \"عطر و طعم اصیل قائنات — همون چیزی که مادربزرگت استفاده می‌کرد\",\r\n    \"بسته‌بندی لوکس کریستالی با درب فلزی — هدیه‌ای شیک و ماندگار\",\r\n    \"آزمایش‌شده در آزمایشگاه معتبر + گواهی اصالت کالا\",\r\n    \"مناسب برای آشپزی، دمنوش، زعفران‌دمنوش و هدیه دادن\"\r\n  ]\r\n  // ویژگی‌های نمایش در صفحه محصول\r\n  // هر خط = یک آیتم در لیست ویژگی‌ها\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/product/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"product",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "timer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"timer_active\" : true,\r\n  \"start_timer\": \"1404/03/02\",\r\n  \"end_timer\": \"1404/04/02\",\r\n  \"start_hour\" : \"12:30\",\r\n  \"end_hour\" : \"12:40\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/product/timer/{{product_simple_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"product",
+								"timer",
+								"{{product_simple_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\" : \"عنوان\",\r\n \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/product/edit/{{product_simple_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"product",
+								"edit",
+								"{{product_simple_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "specification",
+			"item": [
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/specification?product_id={{product_simple_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"specification"
+							],
+							"query": [
+								{
+									"key": "product_id",
+									"value": "{{product_simple_id}}"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "طرح بند",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "values",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/specification/88/values",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"specification",
+								"88",
+								"values"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "prerequisite",
+			"item": [
+				{
+					"name": "brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/prerequisite/brands/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"prerequisite",
+								"brands",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/prerequisite/tags",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"prerequisite",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/prerequisite/services",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"prerequisite",
+								"services"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "blog-category",
+			"item": [
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/blog-category/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"blog-category",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/blog-category/show/22",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"blog-category",
+								"show",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"آموزش سئو و دیجیتال مارکتینگ\",\r\n  \"description\": \"دسته‌بندی تخصصی مقالات آموزشی در زمینه سئو، تولید محتوا، تبلیغات آنلاین و افزایش ترافیک وب‌سایت.\",\r\n  \"status\": true,\r\n  \"parent_id\": null,\r\n  \"url\": \"amoozesh-seo-digital-marketing\",\r\n  \"seo\": {\r\n    \"title_seo\": \"آموزش سئو و دیجیتال مارکتینگ | نکات کاربردی برای رشد کسب‌وکار\",\r\n    \"description_seo\": \"بهترین مقالات آموزشی سئو، بهینه‌سازی محتوا، لینک‌سازی و استراتژی‌های دیجیتال مارکتینگ برای افزایش بازدید و فروش.\",\r\n    \"h1\": \"آموزش سئو و دیجیتال مارکتینگ\",\r\n    \"noindex\": false\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/blog-category/add/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"blog-category",
+								"add",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": 1,\r\n  \"seo\" : {\r\n    \"title_seo\" : \"js4567890-j\"\r\n}\r\n  // هر فیلدی که خواستید\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/blog-category/edit/16",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"blog-category",
+								"edit",
+								"16"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "blog",
+			"item": [
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/blog/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"blog",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/blog/show/398",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"blog",
+								"show",
+								"398"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"۳۲ نکته طلایی برای بهبود سئوی وبلاگ در سال ۱۴۰۴\",\r\n  \"description\": \"در این مقاله جامع، ۳۲ تکنیک عملی و پیشرفته سئو را بررسی می‌کنیم که به شما کمک می‌کند ترافیک ارگانیک وبلاگ خود را تا ۳۰۰٪ افزایش دهید. از تحقیق کلمات کلیدی تا بهینه‌سازی محتوا و لینک‌سازی داخلی.\",\r\n  \"url\": \"32-nekate-talaei-behtar-sazi-seo-weblog\",\r\n  \"image\": null,\r\n  \"status\": true,\r\n  \"parent_id\": 15,\r\n  \"show_in_first_page\": true,\r\n  \"call_to_action\": true,\r\n  \"publish_date\": \"1404/05/15\",\r\n  \"author\": \"دکتر امیرحسین رضایی\",\r\n  \"seo\": {\r\n    \"title_seo\": \"۳۲ نکته طلایی سئو وبلاگ ۱۴۰۴ | راهنمای کامل افزایش رتبه گوگل\",\r\n    \"description_seo\": \"با این ۳۲ تکنیک حرفه‌ای سئو، وبلاگ خود را به صفحه اول گوگل برسانید. شامل تحقیق کلمات کلیدی، محتوای باکیفیت، سرعت سایت و لینک‌سازی.\",\r\n    \"h1\": \"۳۲ نکته طلایی برای بهبود سئوی وبلاگ در سال ۱۴۰۴\",\r\n    \"noindex\": false\r\n  },\r\n  \"services\": [19, 21, 22]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/blog/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"blog",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"url\": \"123\"\r\n  // هر فیلدی که خواستید\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/blog/edit/392",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"blog",
+								"edit",
+								"392"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "base_url",
+			"value": ""
+		},
+		{
+			"key": "product_simple_id",
+			"value": ""
+		}
+	]
+}

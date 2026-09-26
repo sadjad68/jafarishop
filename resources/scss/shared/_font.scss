@@ -1,0 +1,60 @@
+@import'bootstrap-icons';
+
+// Theme1 type: Estedad for letters, Vazirmatn-FD for digits (ASCII 0-9
+// included) so Latin numerals render as Persian. Historic pelak-* names stay.
+$t1-digits: U+0030-0039, U+0660-0669, U+06F0-06F9;
+$t1-letters: U+0000-002F, U+003A-065F, U+066A-06EF, U+06FA-10FFFF;
+
+@mixin t1-face($family, $estedad-file, $fd-file) {
+    @font-face {
+        font-family: $family;
+        font-style: normal;
+        font-weight: 400;
+        src: url("../../fonts/theme1/#{$estedad-file}") format("woff2");
+        unicode-range: $t1-letters;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: $family;
+        font-style: normal;
+        font-weight: 400;
+        src: url("../../fonts/theme1/#{$fd-file}") format("woff2");
+        unicode-range: $t1-digits;
+        font-display: swap;
+    }
+}
+
+@include t1-face(pelak-medium, "Estedad-Medium.woff2", "Vazirmatn-FD-Medium.woff2");
+@include t1-face(pelak-bold, "Estedad-Bold.woff2", "Vazirmatn-FD-Bold.woff2");
+@include t1-face(pelak-rgular, "Estedad-Regular.woff2", "Vazirmatn-FD-Regular.woff2");
+@include t1-face(pelak-thin, "Estedad-Light.woff2", "Vazirmatn-FD-Light.woff2");
+@include t1-face(pelak-num, "Estedad-SemiBold.woff2", "Vazirmatn-FD-SemiBold.woff2");
+@include t1-face(pelak-num-r, "Estedad-Regular.woff2", "Vazirmatn-FD-Regular.woff2");
+
+@font-face {
+    font-family: playfair;
+    font-style: normal;
+    src: url("../../fonts/PlayfairDisplay-Black.woff2") format("woff2"),
+        url("../../fonts/PlayfairDisplay-Black.woff") format("woff");
+    font-display: swap;
+}
+.font{
+    &-md{
+        font-family: pelak-medium, Tahoma, sans-serif;
+    }
+    &-bold{
+        font-family: pelak-bold, Tahoma, sans-serif;
+    }
+    &-re{
+        font-family: pelak-rgular, Tahoma, sans-serif;
+    }
+    &-playfair{
+        font-family: playfair;
+    }
+    &-num{
+        font-family: pelak-num, Tahoma, sans-serif;
+    }
+    &-num-r{
+        font-family: pelak-num-r, Tahoma, sans-serif;
+    }
+}

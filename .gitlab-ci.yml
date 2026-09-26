@@ -1,0 +1,20 @@
+stages:
+  - deploy
+
+deploy MC:
+  stage: deploy
+  environment:
+    name: prod
+  when: manual
+  only:
+    - main
+  tags:
+    - prod-mc
+  script:
+    - cd /var/www/cms-template
+    - sudo git pull origin main
+    - docker exec cms-template_app-core_1 php artisan migrate:multiple
+    - docker exec cms-template_app-core_1 php artisan cache:clear
+    - docker exec cms-template_app-core_1 php artisan optimize:clear
+
+

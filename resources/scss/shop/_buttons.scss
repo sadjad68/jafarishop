@@ -1,0 +1,392 @@
+/* Shopika button system — replaces the old asymmetric radii (20px 0 10px 0)
+   with a single pill / soft-square language across every CTA on the site. */
+
+%sk-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: "yekan-medium", inherit;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 1.25;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform var(--sk-dur-base) var(--sk-ease),
+        box-shadow var(--sk-dur-base) var(--sk-ease),
+        background-color var(--sk-dur-fast) ease,
+        border-color var(--sk-dur-fast) ease,
+        color var(--sk-dur-fast) ease;
+    &:hover {
+        transform: translateY(-2px);
+    }
+    &:active {
+        transform: translateY(0) scale(0.98);
+    }
+    &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-one) 22%, transparent);
+    }
+}
+
+%sk-btn-pill {
+    border-radius: 100px;
+}
+
+%sk-btn-soft {
+    border-radius: var(--sk-radius-xs);
+}
+
+%sk-btn-primary-surface {
+    background-color: var(--color-one);
+    color: var(--text-primery);
+    border-color: var(--color-one);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--color-one) 28%, transparent);
+    &:hover {
+        background-color: color-mix(in srgb, var(--color-one) 88%, #000);
+        border-color: color-mix(in srgb, var(--color-one) 88%, #000);
+        color: var(--text-primery) !important;
+        box-shadow: var(--sk-shadow-md);
+    }
+}
+
+/* ---- Core template button classes ---- */
+.btn-one,
+.btn-one-outline,
+.btn-two,
+.btn-arrow,
+.btn-arrow-two {
+    @extend %sk-btn;
+}
+
+.btn-one {
+    @extend %sk-btn-pill;
+    @extend %sk-btn-primary-surface;
+    padding: 14px 28px;
+}
+
+.btn-one-outline {
+    @extend %sk-btn-pill;
+    background-color: transparent;
+    color: var(--color-one);
+    border: 1.5px solid var(--color-one);
+    padding: 13px 27px;
+    box-shadow: none;
+    &:hover {
+        background-color: var(--color-one);
+        border-color: var(--color-one);
+        color: var(--text-primery) !important;
+        box-shadow: 0 8px 24px color-mix(in srgb, var(--color-one) 24%, transparent);
+    }
+}
+
+.btn-two {
+    @extend %sk-btn-pill;
+    background-color: var(--sk-surface);
+    color: var(--sk-ink-900);
+    border: 1px solid var(--sk-border);
+    padding: 13px 26px;
+    box-shadow: var(--sk-shadow-xs);
+    &:hover {
+        background-color: var(--sk-surface-muted);
+        border-color: var(--sk-ink-300);
+        color: var(--sk-ink-900);
+        box-shadow: var(--sk-shadow-sm);
+    }
+}
+
+.btn-arrow {
+    @extend %sk-btn-soft;
+    justify-content: center !important;
+    text-align: center;
+    width: 100%;
+    background-color: var(--sk-surface);
+    color: var(--sk-ink-900);
+    border: 1px solid var(--sk-border);
+    padding: 14px 16px;
+    font-family: "yekan-regular", inherit;
+    box-shadow: var(--sk-shadow-xs);
+    &:hover {
+        background-color: var(--sk-surface-muted);
+        border-color: color-mix(in srgb, var(--color-one) 35%, var(--sk-border));
+        color: var(--sk-ink-900);
+    }
+    .arrow-box {
+        display: none !important;
+    }
+}
+
+.btn-arrow-two {
+    @extend %sk-btn-pill;
+    @extend %sk-btn-primary-surface;
+    justify-content: center !important;
+    text-align: center;
+    width: 100%;
+    padding: 14px 18px;
+    font-family: "yekan-regular", inherit;
+    a {
+        color: inherit;
+    }
+    .arrow-box {
+        display: none !important;
+    }
+}
+
+/* Bootstrap primitives used in panel, search, modals */
+.btn {
+    @extend %sk-btn;
+    &.btn-primary,
+    &.btn-dark {
+        @extend %sk-btn-pill;
+        @extend %sk-btn-primary-surface;
+        padding: 10px 20px;
+    }
+    &.btn-sm {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+.btn-form {
+    @extend %sk-btn;
+    @extend %sk-btn-soft;
+    @extend %sk-btn-primary-surface;
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 14px;
+}
+
+.btn-to-top {
+    @extend %sk-btn;
+    border-radius: 50%;
+    background-color: var(--color-one);
+    color: var(--text-primery);
+    border: 1px solid var(--color-one);
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    box-shadow: var(--sk-shadow-md);
+    &:hover {
+        background-color: var(--sk-surface);
+        color: var(--color-one);
+        border-color: var(--color-one);
+    }
+}
+
+/* Product quantity steppers */
+.value-button {
+    @extend %sk-btn;
+    background: var(--color-one) !important;
+    color: var(--text-primery) !important;
+    border: 0;
+    font-size: 18px;
+    line-height: 1;
+    &:hover {
+        background: color-mix(in srgb, var(--color-one) 88%, #000) !important;
+    }
+}
+
+.product-page .product-info .number,
+.product-page .mobile-btn-cart .number {
+    .value-button {
+        height: 44px;
+        padding: 0;
+    }
+    #decrease {
+        border-radius: 0 var(--sk-radius-xs) var(--sk-radius-xs) 0;
+    }
+    #increase {
+        border-radius: var(--sk-radius-xs) 0 0 var(--sk-radius-xs);
+    }
+    input#number {
+        height: 44px;
+        border-color: var(--sk-border) !important;
+        background: var(--sk-surface-muted);
+    }
+}
+
+/* Filter / sort / mobile utility triggers */
+.btn-submit-filter,
+.btn-filter-mobile,
+.btn-sort-modal {
+    @extend %sk-btn;
+    @extend %sk-btn-soft;
+    @extend %sk-btn-primary-surface;
+    padding: 10px 18px;
+    font-size: 14px;
+}
+
+.list-product .sort-form li {
+    @extend %sk-btn-soft;
+    border: 1px solid var(--sk-border) !important;
+    background: var(--sk-surface) !important;
+    color: var(--sk-ink-700) !important;
+    transition: background-color var(--sk-dur-fast) ease,
+        border-color var(--sk-dur-fast) ease,
+        color var(--sk-dur-fast) ease,
+        transform var(--sk-dur-fast) ease;
+    &.active,
+    &:hover {
+        background: color-mix(in srgb, var(--color-one) 10%, var(--sk-surface)) !important;
+        border-color: var(--color-one) !important;
+        color: var(--color-one) !important;
+        transform: translateY(-1px);
+    }
+}
+
+/* Tab pills (product categories on home) */
+.nav-pills .nav-link {
+    @extend %sk-btn;
+    @extend %sk-btn-pill;
+    background: var(--sk-surface);
+    border: 1px solid var(--sk-border);
+    color: var(--sk-ink-700);
+    padding: 10px 22px;
+    box-shadow: none;
+    &.active,
+    &:hover {
+        background: var(--color-one);
+        border-color: var(--color-one);
+        color: var(--text-primery);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px color-mix(in srgb, var(--color-one) 22%, transparent);
+    }
+}
+
+/* Swiper navigation — shared across home sections */
+.swiper-button-next,
+.swiper-button-prev {
+    @extend %sk-btn;
+    width: 44px !important;
+    height: 44px !important;
+    margin-top: 0 !important;
+    border-radius: 50%;
+    border: 1px solid var(--sk-border);
+    background-color: var(--sk-surface) !important;
+    box-shadow: var(--sk-shadow-xs);
+    &::after {
+        font-size: 15px !important;
+        color: var(--sk-ink-900);
+        rotate: 180deg;
+    }
+    &:hover {
+        background-color: var(--color-one) !important;
+        border-color: var(--color-one);
+        box-shadow: var(--sk-shadow-sm);
+        &::after {
+            color: var(--text-primery);
+        }
+    }
+}
+
+/* Footer call-to-action pill */
+.btn-time,
+.footer .why-call {
+    @extend %sk-btn-pill;
+}
+
+.time-detail .time-table .btn-time {
+    @extend %sk-btn;
+    @extend %sk-btn-primary-surface;
+    padding: 16px 24px;
+    background: linear-gradient(
+        135deg,
+        var(--color-one),
+        color-mix(in srgb, var(--color-two) 65%, var(--color-one))
+    );
+    border: 0;
+}
+
+/* Cart checkout bar */
+.cart .mobile-checkout-btn .btn-one,
+.mobile-checkout-btn .btn-one {
+    @extend %sk-btn-pill;
+    padding: 14px 24px;
+}
+
+.btn-copy-text {
+    @extend %sk-btn;
+    @extend %sk-btn-soft;
+    background: var(--sk-surface-muted);
+    color: var(--sk-ink-700);
+    border: 1px solid var(--sk-border);
+    padding: 8px 14px;
+    font-size: 13px;
+    box-shadow: none;
+    &:hover {
+        background: var(--sk-ink-100);
+        color: var(--sk-ink-900);
+    }
+}
+
+.btn-trash {
+    @extend %sk-btn;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: color-mix(in srgb, #e5484d 12%, var(--sk-surface));
+    color: #e5484d;
+    border: 1px solid color-mix(in srgb, #e5484d 25%, transparent);
+    box-shadow: none;
+    &:hover {
+        background: #e5484d;
+        color: #fff;
+        border-color: #e5484d;
+    }
+}
+
+/* Search suggest "see more" chip */
+.suggust-search li a.seemore {
+    @extend %sk-btn;
+    @extend %sk-btn-pill;
+    background-color: var(--sk-ink-900) !important;
+    border-color: var(--sk-ink-900) !important;
+    color: var(--sk-surface) !important;
+    padding: 8px 24px !important;
+    font-size: 13px;
+    &:hover {
+        background-color: var(--sk-surface) !important;
+        border-color: var(--sk-ink-900) !important;
+        color: var(--sk-ink-900) !important;
+    }
+}
+
+/* Service cards keep arrow CTA pinned to card bottom */
+.services .swiper-slide .btn-arrow {
+    border-radius: 0 0 var(--sk-radius-sm) var(--sk-radius-sm);
+    border-top: 0;
+}
+
+@media (max-width: 576px) {
+    .btn-one,
+    .btn-one-outline,
+    .btn-two {
+        padding: 12px 22px;
+        font-size: 14px;
+    }
+    .btn-arrow-two {
+        padding: 12px 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-one,
+    .btn-one-outline,
+    .btn-two,
+    .btn-arrow,
+    .btn-arrow-two,
+    .btn,
+    .btn-form,
+    .btn-to-top,
+    .value-button,
+    .swiper-button-next,
+    .swiper-button-prev {
+        transition: none;
+        &:hover {
+            transform: none;
+        }
+    }
+}
