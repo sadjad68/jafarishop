@@ -249,16 +249,30 @@ class SettingService
                 if (!TestImage::is_image($input_file)) {
                     return Redirect::back()->with('error', ' تصویر وارد شده نا معتبر است');
                 }
-                $maxSize = 200 * 1024;
-                if ($key3 === 'logo' && $input_file->getSize() > $maxSize) {
-                    return Redirect::back()->with('error',
-                        'حجم فایل لوگو نباید از ۲۰۰ کیلوبایت بیشتر باشد.');
-                }
 
-                // Favicon must stay PNG (not WebP) for browser tabs and Google search results
-                $fileName = $key3 === 'favicon'
-                    ? FileManager::uploadRaw($input_file, "setting")
-                    : FileManager::upload($input_file, "setting", null, 90);
+                $isLogo = in_array($key3, ['logo', 'footer_logo'], true);
+                $isGif = $input_file->getMimeType() === 'image/gif';
+
+                if ($isLogo && $isGif) {
+                    if (strtolower($input_file->getClientOriginalExtension()) !== 'gif') {
+                        return Redirect::back()->with('error', 'فرمت فایل گیف لوگو نامعتبر است.');
+                    }
+                    if ($input_file->getSize() > 1024 * 1024) {
+                        return Redirect::back()->with('error', 'حجم فایل گیف لوگو نباید از ۱ مگابایت بیشتر باشد.');
+                    }
+                    $fileName = FileManager::uploadRaw($input_file, 'setting');
+                } else {
+                    $maxSize = 200 * 1024;
+                    if ($key3 === 'logo' && $input_file->getSize() > $maxSize) {
+                        return Redirect::back()->with('error',
+                            'حجم فایل لوگو نباید از ۲۰۰ کیلوبایت بیشتر باشد.');
+                    }
+
+                    // Favicon must stay PNG (not WebP) for browser tabs and Google search results
+                    $fileName = $key3 === 'favicon'
+                        ? FileManager::uploadRaw($input_file, "setting")
+                        : FileManager::upload($input_file, "setting", null, 90);
+                }
                 Setting::where('key', $key3)->first()
                     ->update([
                         'value' => $fileName

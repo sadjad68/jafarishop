@@ -59,6 +59,7 @@
     $unique_id = \Illuminate\Support\Str::random(10);
     $width = @$options['width'];
     $height = @$options['height'];
+    $allowsGif = in_array(@$data['key'], ['logo', 'footer_logo'], true);
 @endphp
 <div class="admin-upload setting-upload col-md-6 col-12 my-2">
     <div class="admin-field">
@@ -83,7 +84,7 @@
                 <span class="admin-dropzone-body">
                     <i class="bi bi-cloud-arrow-up"></i>
                     <strong>انتخاب تصویر</strong>
-                    <small>کلیک کنید یا فایل را اینجا رها کنید</small>
+                    <small>{{ $allowsGif ? 'PNG، JPG، WebP یا GIF متحرک' : 'کلیک کنید یا فایل را اینجا رها کنید' }}</small>
                 </span>
             </label>
             @if(isset($data))
@@ -142,10 +143,25 @@
             var $modal = $('#modal{{ $unique_id }}');
             var cropper;
 
+            var allowsGif = {{ $allowsGif ? 'true' : 'false' }};
+
             input.addEventListener('change', function (e) {
                 var files = e.target.files;
                 if (files && files.length > 0) {
                     var file = files[0];
+                    if (allowsGif && file.type === 'image/gif') {
+                        if (previousImage) {
+                            previousImage.style.display = 'none';
+                        }
+                        var dataTransfer = new DataTransfer();
+                        dataTransfer.items.add(file);
+                        croppedImageInput.files = dataTransfer.files;
+                        var gifUrl = URL.createObjectURL(file);
+                        var preview = document.getElementById('image_preview{{ $unique_id }}');
+                        preview.style.display = 'block';
+                        preview.innerHTML = '<img src="' + gifUrl + '" class="img-thumbnail" alt=""/>';
+                        return;
+                    }
                     var url = URL.createObjectURL(file);
                     image.src = url;
                     if (previousImage) {

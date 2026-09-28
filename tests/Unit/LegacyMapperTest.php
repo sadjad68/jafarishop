@@ -9,13 +9,14 @@ class LegacyMapperTest extends TestCase
 {
     public function test_order_status_mapping(): void
     {
-        $this->assertSame('unpaid', LegacyMapper::orderStatus(1));
+        $this->assertTrue(LegacyMapper::isBasketOrder(1));
+        $this->assertFalse(LegacyMapper::isBasketOrder(2));
         $this->assertSame('paying', LegacyMapper::orderStatus(2));
         $this->assertSame('paid', LegacyMapper::orderStatus(3));
         $this->assertSame('paid', LegacyMapper::orderStatus(4));
-        $this->assertSame('cancelled', LegacyMapper::orderStatus(5));
-        $this->assertTrue(LegacyMapper::isDeliveredOrder(4));
-        $this->assertFalse(LegacyMapper::isDeliveredOrder(3));
+        $this->assertSame(5, LegacyMapper::shippingStatusId(4));
+        $this->assertNull(LegacyMapper::shippingStatusId(3));
+        $this->assertSame('unpaid', LegacyMapper::orderStatus(5));
     }
 
     public function test_discount_type_mapping(): void

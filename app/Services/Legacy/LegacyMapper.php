@@ -8,19 +8,24 @@ class LegacyMapper
     public const BLOG = 'App\\Modules\\Blog\\Entities\\Blog';
     public const PRODUCT_CATEGORY = 'App\\Modules\\Product\\Entities\\ProductCategory';
 
+    public static function isBasketOrder($statusId): bool
+    {
+        return (int) $statusId === 1;
+    }
+
     public static function orderStatus($statusId): string
     {
         return match ((int) $statusId) {
             2 => 'paying',
             3, 4 => 'paid',
-            5 => 'cancelled',
+            5 => 'unpaid',
             default => 'unpaid',
         };
     }
 
-    public static function isDeliveredOrder($statusId): bool
+    public static function shippingStatusId($statusId): ?int
     {
-        return (int) $statusId === 4;
+        return (int) $statusId === 4 ? 5 : null;
     }
 
     public static function discountType($type): string

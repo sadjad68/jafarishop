@@ -16,12 +16,11 @@ class CommerceImporter
     {
         $stats = new LegacyImportStats();
         $this->discounts($stats);
-        $deliveredStatusId = $this->deliveredStatusId();
-        $context = $this->context($deliveredStatusId);
+        $context = $this->context();
         $this->orders($stats, $context);
         $this->orderItems($stats);
         $this->serviceOrders($stats);
-        foreach (['discounts', 'orders', 'order_items', 'order_shipping_statuses', 'order_histories', 'service_requests'] as $table) {
+        foreach (['discounts', 'orders', 'order_items', 'order_histories', 'service_requests', 'baskets', 'basket_items'] as $table) {
             $this->support->realignAutoIncrement($table);
         }
 
@@ -59,26 +58,7 @@ class CommerceImporter
         });
     }
 
-    private function deliveredStatusId(): int
-    {
-        $existing = $this->support->new()->table('order_shipping_statuses')
-            ->where('title', 'تحویل داده شده')
-            ->value('id');
-        if ($existing) {
-            return (int) $existing;
-        }
-
-        return (int) $this->support->new()->table('order_shipping_statuses')->insertGetId([
-            'title' => 'تحویل داده شده',
-            'color' => 'success',
-            'default' => 0,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-            'deleted_at' => null,
-        ]);
-    }
-
-    private function context(int $deliveredStatusId): array
+    private function context(): array
     {
         $transactions = [];
         foreach ($this->support->old()->table('transactions')->get() as $transaction) {
@@ -112,7 +92,7 @@ class CommerceImporter
             $cities[(int) $id] = $name;
         }
 
-        return compact('transactions', 'discountIds', 'users', 'addresses', 'states', 'cities', 'deliveredStatusId');
+        return compact('transactions', 'discountIds', 'users', 'addresses', 'states', 'cities');
     }
 
     private function orders(LegacyImportStats $stats, array $context): void
@@ -159,7 +139,25 @@ class CommerceImporter
                 $info['description'] = $transaction->description;
             }
             $now = LegacyMapper::timestamp($row->created_at ?? null);
-            $delivered = LegacyMapper::isDeliveredOrder($row->order_status_id ?? null);
+            if (LegacyMapper::isBasketOrder($row->order_status_id ?? null)) {
+                $this->support->copyRow('orders', $id, 'baskets', [
+                    'id' => $id,
+                    'user_id' => $userId,
+                    'address_id' => $useSavedAddress ? (int) $addressRow->id : null,
+                    'bank_id' => null,
+                    'shipping_method_id' => null,
+                    'discount_id' => $discountId,
+                    'user_cookie' => null,
+                    'torob_clid' => null,
+                    'created_at' => $now,
+                    'updated_at' => LegacyMapper::timestamp($row->updated_at ?? $now),
+                    'deleted_at' => LegacyMapper::nullableTimestamp($row->deleted_at ?? null),
+                ], $stats);
+
+                return;
+            }
+            $shippingStatusId = LegacyMapper::shippingStatusId($row->order_status_id ?? null);
+            $orderStatus = LegacyMapper::orderStatus($row->order_status_id ?? null);
             $inserted = $this->support->copyRow('orders', $id, 'orders', [
                 'id' => $id,
                 'user_id' => $userId,
@@ -174,8 +172,8 @@ class CommerceImporter
                     'postal_code' => $useSavedAddress ? ($addressRow->postal_code ?? '') : '',
                 ], JSON_UNESCAPED_UNICODE),
                 'receiptor_full_name' => $receiptorName,
-                'shipping_status_id' => $delivered ? $context['deliveredStatusId'] : null,
-                'order_status' => LegacyMapper::orderStatus($row->order_status_id ?? null),
+                'shipping_status_id' => $shippingStatusId,
+                'order_status' => $orderStatus,
                 'discount_id' => $discountId,
                 'shipping_price' => LegacyMapper::decimalString($post) ?? '0',
                 'total_price' => LegacyMapper::decimalString($items) ?? '0',
@@ -194,15 +192,15 @@ class CommerceImporter
             }
             $historyExists = $this->support->new()->table('order_histories')
                 ->where('order_id', $id)
-                ->where('order_status', LegacyMapper::orderStatus($row->order_status_id ?? null))
+                ->where('order_status', $orderStatus)
                 ->exists();
             if ($historyExists) {
                 return;
             }
             $this->support->new()->table('order_histories')->insert([
                 'order_id' => $id,
-                'shipping_status_id' => $delivered ? $context['deliveredStatusId'] : null,
-                'order_status' => LegacyMapper::orderStatus($row->order_status_id ?? null),
+                'shipping_status_id' => $shippingStatusId,
+                'order_status' => $orderStatus,
                 'created_at' => $now,
                 'updated_at' => $now,
                 'deleted_at' => null,
@@ -212,9 +210,32 @@ class CommerceImporter
 
     private function orderItems(LegacyImportStats $stats): void
     {
-        $this->support->eachPending('order_items', function ($row) use ($stats) {
+        $basketOrderIds = [];
+        foreach ($this->support->old()->table('orders')->where('order_status_id', 1)->pluck('id') as $orderId) {
+            $basketOrderIds[(int) $orderId] = true;
+        }
+
+        $this->support->eachPending('order_items', function ($row) use ($stats, $basketOrderIds) {
             $id = (int) $row->id;
+            $orderId = LegacyMapper::positiveInt($row->order_id ?? null);
             $now = LegacyMapper::timestamp($row->created_at ?? null);
+            if ($orderId && isset($basketOrderIds[$orderId])) {
+                if (!$this->support->targetExists('baskets', $orderId)) {
+                    return;
+                }
+                $this->support->copyRow('order_items', $id, 'basket_items', [
+                    'id' => $id,
+                    'basket_id' => $orderId,
+                    'product_id' => LegacyMapper::positiveInt($row->product_id ?? null),
+                    'product_variant_id' => null,
+                    'quantity' => (string) ((int) ($row->quantity ?? 0)),
+                    'created_at' => $now,
+                    'updated_at' => LegacyMapper::timestamp($row->updated_at ?? $now),
+                    'deleted_at' => LegacyMapper::nullableTimestamp($row->deleted_at ?? null),
+                ], $stats);
+
+                return;
+            }
             $price = LegacyMapper::decimalString($row->price ?? 0) ?? '0';
             $this->support->copyRow('order_items', $id, 'order_items', [
                 'id' => $id,
