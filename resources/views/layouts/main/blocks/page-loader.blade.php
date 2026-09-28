@@ -4,9 +4,9 @@
 
     if ($routeName === 'index') {
         $loaderLayout = 'home';
-    } elseif (in_array($routeName, ['product.detail', 'package.detail', 'portfolio.detail', 'service.detail'], true)) {
+    } elseif (in_array($routeName, ['product.detail', 'product.legacy', 'package.detail', 'portfolio.detail', 'service.detail'], true)) {
         $loaderLayout = 'pdp';
-    } elseif (in_array($routeName, ['product.get-all', 'product.get-discounted-list', 'category.detail', 'brand.detail', 'search.detail'], true)) {
+    } elseif (in_array($routeName, ['product.get-all', 'product.get-discounted-list', 'category.detail', 'category.listing', 'category.legacy', 'category.legacy-child', 'brand.detail', 'search.detail'], true)) {
         $loaderLayout = 'plp';
     } elseif (in_array($routeName, [
         'category.list',

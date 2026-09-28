@@ -32,7 +32,7 @@
 
     if ($brand) {
         $bannerArgs['bannerBrandTitle'] = @$brand['title'];
-        $bannerArgs['bannerBrandUrl'] = route('brand.detail', ['url' => $brand['url']]);
+        $bannerArgs['bannerBrandUrl'] = \App\Library\SiteUrl::brand($brand);
         $bannerArgs['bannerBrandLogo'] = $brand->item_image;
     }
 @endphp

@@ -107,6 +107,10 @@ class Comment extends Model
 
         if ($routeName && $commentable && ! empty($commentable->url ?? null)) {
             try {
+                if ($commentable instanceof Product) {
+                    return \App\Library\SiteUrl::product($commentable);
+                }
+
                 return route($routeName, $commentable->url);
             } catch (\Throwable $e) {
                 return '';

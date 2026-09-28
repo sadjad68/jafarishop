@@ -257,8 +257,8 @@ Route::controller(CategoryController::class)->name('category.')->group(function 
 Route::get('/categories/{id}', [LegacySiteRedirectController::class, 'categoryById'])->whereNumber('id');
 Route::get('/categories-show/{id}', [LegacySiteRedirectController::class, 'categoryById'])->whereNumber('id');
 Route::get('/categories-show/{url}', [CategoryController::class, 'detail'])->name('category.detail');
-Route::get('/category/{id}', [LegacySiteRedirectController::class, 'categoryById'])->whereNumber('id');
-Route::get('/sub-category/{id}', [LegacySiteRedirectController::class, 'categoryById'])->whereNumber('id');
+Route::get('/category/{id}', [CategoryController::class, 'showLegacyParent'])->whereNumber('id')->name('category.legacy');
+Route::get('/sub-category/{id}', [CategoryController::class, 'showLegacyChild'])->whereNumber('id')->name('category.legacy-child');
 Route::get('/category/{url}', function (string $url) {
     return redirect(\App\Library\SiteUrl::category($url), 301);
 });
@@ -283,7 +283,7 @@ Route::controller(ProductController::class)->name('product.')->group(function ()
 });
 Route::redirect('/all-products', '/products', 301);
 Route::get('/products/{id}', [LegacySiteRedirectController::class, 'productById'])->whereNumber('id');
-Route::get('/product/{id}', [ProductController::class, 'detailById'])->whereNumber('id');
+Route::get('/product/{id}', [ProductController::class, 'detailById'])->whereNumber('id')->name('product.legacy');
 Route::get('/product/{url}', [LegacySiteRedirectController::class, 'productBySlug']);
 
 //tag

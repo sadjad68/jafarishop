@@ -357,38 +357,76 @@ class LegacyMapper
     /**
      * @return array<int, array{old:string, new:string}>
      */
-    public static function categoryRedirects(int $id, ?string $url): array
+    public static function categoryRedirects(int $id, ?string $url, ?int $oldId = null, bool $isParent = false): array
     {
         $url = self::normalizeRedirect($url);
-        if ($url === null || $id <= 0) {
+        if ($id <= 0) {
+            return [];
+        }
+
+        $canonical = self::categoryPublicPath($url, $oldId, $isParent);
+        if ($canonical === null) {
+            return [];
+        }
+
+        if ('categories/' . $id === $canonical) {
             return [];
         }
 
         return [
-            ['old' => 'categories/' . $id, 'new' => $url],
+            ['old' => 'categories/' . $id, 'new' => $canonical],
         ];
     }
 
     /**
      * @return array<int, array{old:string, new:string}>
      */
-    public static function productRedirects(int $id, ?string $productUrl, ?string $categoryUrl): array
+    public static function productRedirects(int $id, ?string $productUrl, ?string $categoryUrl, ?int $oldId = null): array
     {
         $productUrl = self::normalizeRedirect($productUrl);
         $categoryUrl = self::normalizeRedirect($categoryUrl);
-        if ($productUrl === null || $id <= 0) {
+        if ($id <= 0) {
             return [];
         }
 
-        if ($categoryUrl !== null) {
-            return [
-                ['old' => 'products/' . $id, 'new' => $categoryUrl . '/' . $productUrl],
+        if ($oldId) {
+            $canonical = 'product/' . $oldId;
+            $rows = [
+                ['old' => 'products/' . $id, 'new' => $canonical],
             ];
+            if ($productUrl !== null && $categoryUrl !== null) {
+                $slugPath = $categoryUrl . '/' . $productUrl;
+                if ($slugPath !== $canonical) {
+                    $rows[] = ['old' => $slugPath, 'new' => $canonical];
+                }
+            }
+
+            return $rows;
         }
 
+        if ($productUrl === null) {
+            return [];
+        }
+
+        $canonical = $categoryUrl !== null ? $categoryUrl . '/' . $productUrl : 'product/' . $productUrl;
+
         return [
-            ['old' => 'products/' . $id, 'new' => 'product/' . $productUrl],
+            ['old' => 'products/' . $id, 'new' => $canonical],
         ];
+    }
+
+    public static function categoryPublicPath(?string $url, ?int $oldId, bool $isParent): ?string
+    {
+        if ($oldId) {
+            return ($isParent ? 'category/' : 'sub-category/') . $oldId;
+        }
+
+        $url = self::normalizeRedirect($url);
+        if ($url === null) {
+            return null;
+        }
+
+        return $isParent ? 'categories-show/' . $url : $url;
     }
 
     /**
@@ -421,8 +459,13 @@ class LegacyMapper
             return [];
         }
 
-        return [
+        $rows = [
             ['old' => 'brand/' . $url, 'new' => 'brands/' . $id],
         ];
+        if ($url !== (string) $id) {
+            $rows[] = ['old' => 'brands/' . $url, 'new' => 'brands/' . $id];
+        }
+
+        return $rows;
     }
 }

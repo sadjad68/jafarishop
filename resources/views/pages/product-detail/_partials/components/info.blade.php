@@ -12,7 +12,7 @@
     @endforeach
     <span class="mx-2 color-title op-lighter font-th">|</span>
     @if ($brand)
-        <a href="{{ route('brand.detail', ['url' => $brand['url']]) }}" class="font-bold m-0 font-small color-title">
+        <a href="{{ \App\Library\SiteUrl::brand($brand) }}" class="font-bold m-0 font-small color-title">
             <span class="font-re">
                 {{ @$brand['title'] }}
             </span>

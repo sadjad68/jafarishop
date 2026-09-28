@@ -1,5 +1,5 @@
      <!-- menu app -->
-@if (!request()->routeIs('product.detail'))
+@if (!request()->routeIs('product.detail', 'product.legacy'))
     <nav class="menu-app site-menu-bar d-flex d-lg-none" aria-label="منوی موبایل">
         <a href="{{ route('index') }}"
            class="site-menu-bar__link d-flex flex-column align-items-center {{ request()->routeIs('index') ? 'is-active' : '' }}">

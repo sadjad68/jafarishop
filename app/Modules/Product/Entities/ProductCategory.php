@@ -27,7 +27,7 @@ class ProductCategory extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'title', 'description', 'url', 'active', 'show_in_site', 'parent_id', 'image', 'show_in_first_page', 'sort', 'have_price_range', 'min_price', 'max_price',
+        'title', 'description', 'url', 'old_id', 'active', 'show_in_site', 'parent_id', 'image', 'show_in_first_page', 'sort', 'have_price_range', 'min_price', 'max_price',
     ];
 
     public function specifications()

@@ -1,6 +1,6 @@
 @php
-    $brandHref = filled($brand['url'] ?? null)
-        ? route('brand.detail', ['url' => $brand['url']])
+    $brandHref = filled($brand['id'] ?? null)
+        ? \App\Library\SiteUrl::brand($brand)
         : null;
 @endphp
 @if($brandHref)

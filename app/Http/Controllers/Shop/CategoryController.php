@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Shop;
 
+use App\Library\SiteUrl;
+use App\Modules\Product\Entities\ProductCategory;
 use Illuminate\Routing\Controller;
 use App\Modules\Product\Services\BrandService;
 use App\Modules\Product\Services\ProductCategoryService;
@@ -17,11 +19,39 @@ class CategoryController extends Controller
         return view('pages.category-product.index', compact('product_categories'));
     }
 
+    public function showLegacyParent(int $id)
+    {
+        return $this->listing($this->legacyCategory($id, true));
+    }
+
+    public function showLegacyChild(int $id)
+    {
+        return $this->listing($this->legacyCategory($id, false));
+    }
+
     public function detail($url)
     {
         $product_category = ProductCategoryService::findOne($url);
+        $target = rawurldecode(trim((string) parse_url(SiteUrl::category($product_category, false), PHP_URL_PATH), '/'));
+        $current = rawurldecode(trim(request()->path(), '/'));
+        if ($target !== '' && $target !== $current) {
+            return redirect(SiteUrl::category($product_category), 301);
+        }
 
-        $children = $product_category->children()->select('id', 'title', 'url', 'parent_id', 'image')->get();
+        return $this->listing($product_category);
+    }
+
+    private function legacyCategory(int $id, bool $parent): ProductCategory
+    {
+        $query = ProductCategory::query()->where('old_id', $id);
+        $parent ? $query->whereNull('parent_id') : $query->whereNotNull('parent_id');
+
+        return $query->firstOrFail();
+    }
+
+    private function listing($product_category)
+    {
+        $children = $product_category->children()->select('id', 'title', 'url', 'old_id', 'parent_id', 'image')->get();
         //products
         $category_ids = [];
 

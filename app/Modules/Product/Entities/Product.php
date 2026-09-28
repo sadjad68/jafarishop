@@ -32,7 +32,7 @@ class Product extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'title', 'description', 'url', 'brand_id', 'active', 'image',
+        'title', 'description', 'url', 'old_id', 'brand_id', 'active', 'image',
 //        'unstable_price',
         'price', 'discounted_price', 'final_price', 'show_in_first_page', 'timer_active', 'end_timer', 'start_timer', 'stock',
         'main_variant_specification_id', 'weight', 'price_formula', 'creator_id',

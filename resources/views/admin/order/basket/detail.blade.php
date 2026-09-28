@@ -108,7 +108,7 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>
                                         @if (@$item->product)
-                                        <a target="_blank" href="{{ route("product.detail",@$item->product->url) }}">{{ @$item->product->title }}</a>
+                                        <a target="_blank" href="{{ \App\Library\SiteUrl::product(@$item->product) }}">{{ @$item->product->title }}</a>
                                         @endif
                                     </td>
                                     <td>

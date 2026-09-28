@@ -111,10 +111,10 @@
                                             </a>
                                             <a class="d-flex me-2 align-items-center" data-bs-toggle="tooltip"
                                                data-bs-title="مشاهده" target="_blank"
-                                               href="{{ route('brand.detail', ['url' => $row['url']]) }}">
+                                               href="{{ \App\Library\SiteUrl::brand($row) }}">
                                                 <i class="d-flex bi bi-eye color-custom2 fs-5"></i>
                                             </a>
-                                            @include('admin.components.admin.copy-button', ['url' => parse_url(route('brand.detail', ['url' => $row['url']]), PHP_URL_PATH)])
+                                            @include('admin.components.admin.copy-button', ['url' => parse_url(\App\Library\SiteUrl::brand($row), PHP_URL_PATH)])
 
                                         </div>
                                     </th>

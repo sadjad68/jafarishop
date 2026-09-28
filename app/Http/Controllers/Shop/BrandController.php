@@ -24,6 +24,8 @@ class BrandController extends Controller
             $brand = Brand::query()->findOrFail($url);
         } else {
             $brand = BrandService::findOne($url);
+
+            return redirect()->route('brand.detail', ['url' => $brand->id], 301);
         }
         $brands = BrandService::findAll(['select'=>['id','title','url']], $brand['id']);
 

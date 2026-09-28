@@ -55,9 +55,14 @@ class RedirectImporter
 
     private function generated(LegacyImportStats $stats): void
     {
-        $categories = $this->support->new()->table('product_categories')->get(['id', 'url']);
+        $categories = $this->support->new()->table('product_categories')->get(['id', 'url', 'old_id', 'parent_id']);
         foreach ($categories as $category) {
-            $this->storeMany(LegacyMapper::categoryRedirects((int) $category->id, $category->url), $stats);
+            $this->storeMany(LegacyMapper::categoryRedirects(
+                (int) $category->id,
+                $category->url,
+                LegacyMapper::positiveInt($category->old_id ?? null),
+                $category->parent_id === null
+            ), $stats);
         }
 
         $categoryUrls = [];
@@ -71,10 +76,15 @@ class RedirectImporter
                 $pivots[$productId] = (int) $pivot->product_category_id;
             }
         }
-        foreach ($this->support->new()->table('products')->get(['id', 'url']) as $product) {
+        foreach ($this->support->new()->table('products')->get(['id', 'url', 'old_id']) as $product) {
             $categoryId = $pivots[(int) $product->id] ?? null;
             $categoryUrl = $categoryId ? ($categoryUrls[$categoryId] ?? null) : null;
-            $this->storeMany(LegacyMapper::productRedirects((int) $product->id, $product->url, $categoryUrl), $stats);
+            $this->storeMany(LegacyMapper::productRedirects(
+                (int) $product->id,
+                $product->url,
+                $categoryUrl,
+                LegacyMapper::positiveInt($product->old_id ?? null)
+            ), $stats);
         }
 
         $blogCategoryUrls = [];

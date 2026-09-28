@@ -110,7 +110,7 @@
           "@@type": "ListItem",
           "position": 3,
           "name": "{{@$brand['title']}}",
-          "item": "{{ route('brand.detail', ['url' => $brand['url']]) }}"
+          "item": "{{ \App\Library\SiteUrl::brand($brand) }}"
         }
               ],
       "name": "menu"

@@ -1,4 +1,4 @@
-@if (!request()->routeIs('product.detail'))
+@if (!request()->routeIs('product.detail', 'product.legacy'))
     <nav class="menu-app t1-menu-bar d-flex d-lg-none" aria-label="منوی موبایل"@if ($settings['disable_shop'] == 1) id="menu"@endif>
         <a href="{{ route('index') }}"
            class="t1-menu-bar__link {{ request()->routeIs('index') ? 'is-active' : '' }}">

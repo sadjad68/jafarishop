@@ -7,6 +7,8 @@
         $url = \App\Library\SiteUrl::blog($entity);
     } elseif ($route === 'category.detail') {
         $url = \App\Library\SiteUrl::category($entity);
+    } elseif ($route === 'brand.detail') {
+        $url = \App\Library\SiteUrl::brand($entity);
     } else {
         $url = route($route, $entity->url ?? '');
     }

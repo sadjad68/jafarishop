@@ -20,15 +20,34 @@ class ProductController extends Controller
 {
     public function detailById(int $id, Request $request)
     {
-        $product = Product::with('categories')->findOrFail($id);
-        $category = optional($product->categories->first())->url ?: 'item';
+        $product = Product::where('old_id', $id)->active()->with(
+            'categories',
+            'brand',
+            'properties',
+            'faqs',
+            'videos',
+            'images',
+            'specification_values',
+            'comments',
+            'related',
+            'complement'
+        )->firstOrFail();
 
-        return $this->detail($category, $product->url, $request);
+        return $this->renderDetail($product, $request);
     }
 
     public function detail($category, $url, Request $request)
     {
         $product = ProductService::findOne($url);
+        if (!empty($product->old_id)) {
+            return redirect('/product/' . $product->old_id, 301);
+        }
+
+        return $this->renderDetail($product, $request);
+    }
+
+    private function renderDetail($product, Request $request)
+    {
         $categories = $product->categories;
         $brand = @$product->brand;
         $slogans_query = ['active'=>1];
