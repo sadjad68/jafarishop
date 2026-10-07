@@ -503,5 +503,5 @@ Route::get('/{category}/{url}', [ProductController::class, 'detail'])
     ->name('product.detail');
 
 Route::get('/{url}', [CategoryController::class, 'detail'])
-    ->where('url', '^(?!(?:'.$reservedSiteSegment.')$)(?!.*\.(?:xml|txt|css|js|map|ico)$).+')
+    ->where('url', '^(?!legacy-import(?:/|$))(?!(?:'.$reservedSiteSegment.')$)(?!.*\.(?:xml|txt|css|js|map|ico)$).+')
     ->name('category.listing');
