@@ -54,10 +54,8 @@
             </a>
         </div>
     @endif
-    @if (!request()->is('product/*'))
-    @if($theme_provider->getValue() == "theme2" && @$settings['ads_show'] == 1)
-        @include('layouts.main.blocks.theme2.call-fixed')
-    @endif
+    @if (@$settings['ads_show'] == 1)
+        @include('layouts.main.blocks.' . $theme_provider->getValue() . '.call-fixed')
     @endif
     </body>
 </html>
